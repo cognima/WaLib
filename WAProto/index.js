@@ -1753,6 +1753,7 @@ $root.proto = (function() {
          * @interface IAIRichResponseMessage
          * @property {proto.AIRichResponseMessage.AIRichResponseMessageType|null} [messageType] AIRichResponseMessage messageType
          * @property {Array.<proto.AIRichResponseMessage.IAIRichResponseSubMessage>|null} [submessages] AIRichResponseMessage submessages
+         * @property {proto.AIRichResponseMessage.IAIRichResponseAbstractData|null} [abstractData] AIRichResponseMessage abstractData
          */
 
         /**
@@ -1787,12 +1788,26 @@ $root.proto = (function() {
          */
         AIRichResponseMessage.prototype.submessages = $util.emptyArray;
 
+        /**
+         * AIRichResponseMessage abstractData.
+         * @member {proto.AIRichResponseMessage.IAIRichResponseAbstractData|null|undefined} abstractData
+         * @memberof proto.AIRichResponseMessage
+         * @instance
+         */
+        AIRichResponseMessage.prototype.abstractData = null;
+
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
         // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseMessage.prototype, "_messageType", {
             get: $util.oneOfGetter($oneOfFields = ["messageType"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(AIRichResponseMessage.prototype, "_abstractData", {
+            get: $util.oneOfGetter($oneOfFields = ["abstractData"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
@@ -1825,6 +1840,8 @@ $root.proto = (function() {
             if (message.submessages != null && message.submessages.length)
                 for (var i = 0; i < message.submessages.length; ++i)
                     $root.proto.AIRichResponseMessage.AIRichResponseSubMessage.encode(message.submessages[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.abstractData != null && Object.hasOwnProperty.call(message, "abstractData"))
+                $root.proto.AIRichResponseMessage.AIRichResponseAbstractData.encode(message.abstractData, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             return writer;
         };
 
@@ -1867,6 +1884,10 @@ $root.proto = (function() {
                         if (!(message.submessages && message.submessages.length))
                             message.submessages = [];
                         message.submessages.push($root.proto.AIRichResponseMessage.AIRichResponseSubMessage.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 3: {
+                        message.abstractData = $root.proto.AIRichResponseMessage.AIRichResponseAbstractData.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -1924,6 +1945,14 @@ $root.proto = (function() {
                         return "submessages." + error;
                 }
             }
+            if (message.abstractData != null && message.hasOwnProperty("abstractData")) {
+                properties._abstractData = 1;
+                {
+                    var error = $root.proto.AIRichResponseMessage.AIRichResponseAbstractData.verify(message.abstractData);
+                    if (error)
+                        return "abstractData." + error;
+                }
+            }
             return null;
         };
 
@@ -1965,6 +1994,11 @@ $root.proto = (function() {
                     message.submessages[i] = $root.proto.AIRichResponseMessage.AIRichResponseSubMessage.fromObject(object.submessages[i]);
                 }
             }
+            if (object.abstractData != null) {
+                if (typeof object.abstractData !== "object")
+                    throw TypeError(".proto.AIRichResponseMessage.abstractData: object expected");
+                message.abstractData = $root.proto.AIRichResponseMessage.AIRichResponseAbstractData.fromObject(object.abstractData);
+            }
             return message;
         };
 
@@ -1992,6 +2026,11 @@ $root.proto = (function() {
                 object.submessages = [];
                 for (var j = 0; j < message.submessages.length; ++j)
                     object.submessages[j] = $root.proto.AIRichResponseMessage.AIRichResponseSubMessage.toObject(message.submessages[j], options);
+            }
+            if (message.abstractData != null && message.hasOwnProperty("abstractData")) {
+                object.abstractData = $root.proto.AIRichResponseMessage.AIRichResponseAbstractData.toObject(message.abstractData, options);
+                if (options.oneofs)
+                    object._abstractData = "abstractData";
             }
             return object;
         };
@@ -2021,6 +2060,225 @@ $root.proto = (function() {
             }
             return typeUrlPrefix + "/proto.AIRichResponseMessage";
         };
+
+        AIRichResponseMessage.AIRichResponseAbstractData = (function() {
+
+            /**
+             * Properties of a AIRichResponseAbstractData.
+             * @memberof proto.AIRichResponseMessage
+             * @interface IAIRichResponseAbstractData
+             * @property {Uint8Array|null} [data] AIRichResponseAbstractData data
+             */
+
+            /**
+             * Constructs a new AIRichResponseAbstractData.
+             * @memberof proto.AIRichResponseMessage
+             * @classdesc Represents a AIRichResponseAbstractData.
+             * @implements IAIRichResponseAbstractData
+             * @constructor
+             * @param {proto.AIRichResponseMessage.IAIRichResponseAbstractData=} [properties] Properties to set
+             */
+            function AIRichResponseAbstractData(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * AIRichResponseAbstractData data.
+             * @member {Uint8Array|null|undefined} data
+             * @memberof proto.AIRichResponseMessage.AIRichResponseAbstractData
+             * @instance
+             */
+            AIRichResponseAbstractData.prototype.data = null;
+
+            // OneOf field names bound to virtual getters and setters
+            var $oneOfFields;
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(AIRichResponseAbstractData.prototype, "_data", {
+                get: $util.oneOfGetter($oneOfFields = ["data"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            /**
+             * Creates a new AIRichResponseAbstractData instance using the specified properties.
+             * @function create
+             * @memberof proto.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {proto.AIRichResponseMessage.IAIRichResponseAbstractData=} [properties] Properties to set
+             * @returns {proto.AIRichResponseMessage.AIRichResponseAbstractData} AIRichResponseAbstractData instance
+             */
+            AIRichResponseAbstractData.create = function create(properties) {
+                return new AIRichResponseAbstractData(properties);
+            };
+
+            /**
+             * Encodes the specified AIRichResponseAbstractData message. Does not implicitly {@link proto.AIRichResponseMessage.AIRichResponseAbstractData.verify|verify} messages.
+             * @function encode
+             * @memberof proto.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {proto.AIRichResponseMessage.IAIRichResponseAbstractData} message AIRichResponseAbstractData message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseAbstractData.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.data);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified AIRichResponseAbstractData message, length delimited. Does not implicitly {@link proto.AIRichResponseMessage.AIRichResponseAbstractData.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {proto.AIRichResponseMessage.IAIRichResponseAbstractData} message AIRichResponseAbstractData message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseAbstractData.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a AIRichResponseAbstractData message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.AIRichResponseMessage.AIRichResponseAbstractData} AIRichResponseAbstractData
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseAbstractData.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.AIRichResponseMessage.AIRichResponseAbstractData();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.data = reader.bytes();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a AIRichResponseAbstractData message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.AIRichResponseMessage.AIRichResponseAbstractData} AIRichResponseAbstractData
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseAbstractData.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a AIRichResponseAbstractData message.
+             * @function verify
+             * @memberof proto.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            AIRichResponseAbstractData.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                var properties = {};
+                if (message.data != null && message.hasOwnProperty("data")) {
+                    properties._data = 1;
+                    if (!(message.data && typeof message.data.length === "number" || $util.isString(message.data)))
+                        return "data: buffer expected";
+                }
+                return null;
+            };
+
+            /**
+             * Creates a AIRichResponseAbstractData message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.AIRichResponseMessage.AIRichResponseAbstractData} AIRichResponseAbstractData
+             */
+            AIRichResponseAbstractData.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.AIRichResponseMessage.AIRichResponseAbstractData)
+                    return object;
+                var message = new $root.proto.AIRichResponseMessage.AIRichResponseAbstractData();
+                if (object.data != null)
+                    if (typeof object.data === "string")
+                        $util.base64.decode(object.data, message.data = $util.newBuffer($util.base64.length(object.data)), 0);
+                    else if (object.data.length >= 0)
+                        message.data = object.data;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a AIRichResponseAbstractData message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {proto.AIRichResponseMessage.AIRichResponseAbstractData} message AIRichResponseAbstractData
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            AIRichResponseAbstractData.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (message.data != null && message.hasOwnProperty("data")) {
+                    object.data = options.bytes === String ? $util.base64.encode(message.data, 0, message.data.length) : options.bytes === Array ? Array.prototype.slice.call(message.data) : message.data;
+                    if (options.oneofs)
+                        object._data = "data";
+                }
+                return object;
+            };
+
+            /**
+             * Converts this AIRichResponseAbstractData to JSON.
+             * @function toJSON
+             * @memberof proto.AIRichResponseMessage.AIRichResponseAbstractData
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            AIRichResponseAbstractData.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for AIRichResponseAbstractData
+             * @function getTypeUrl
+             * @memberof proto.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            AIRichResponseAbstractData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.AIRichResponseMessage.AIRichResponseAbstractData";
+            };
+
+            return AIRichResponseAbstractData;
+        })();
 
         AIRichResponseMessage.AIRichResponseCodeMetadata = (function() {
 
@@ -2591,6 +2849,842 @@ $root.proto = (function() {
             })();
 
             return AIRichResponseCodeMetadata;
+        })();
+
+        AIRichResponseMessage.AIRichResponseContentItemsMetadata = (function() {
+
+            /**
+             * Properties of a AIRichResponseContentItemsMetadata.
+             * @memberof proto.AIRichResponseMessage
+             * @interface IAIRichResponseContentItemsMetadata
+             * @property {Array.<proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseContentItemMetadata>|null} [itemsMetadata] AIRichResponseContentItemsMetadata itemsMetadata
+             * @property {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.ContentType|null} [contentType] AIRichResponseContentItemsMetadata contentType
+             */
+
+            /**
+             * Constructs a new AIRichResponseContentItemsMetadata.
+             * @memberof proto.AIRichResponseMessage
+             * @classdesc Represents a AIRichResponseContentItemsMetadata.
+             * @implements IAIRichResponseContentItemsMetadata
+             * @constructor
+             * @param {proto.AIRichResponseMessage.IAIRichResponseContentItemsMetadata=} [properties] Properties to set
+             */
+            function AIRichResponseContentItemsMetadata(properties) {
+                this.itemsMetadata = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * AIRichResponseContentItemsMetadata itemsMetadata.
+             * @member {Array.<proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseContentItemMetadata>} itemsMetadata
+             * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @instance
+             */
+            AIRichResponseContentItemsMetadata.prototype.itemsMetadata = $util.emptyArray;
+
+            /**
+             * AIRichResponseContentItemsMetadata contentType.
+             * @member {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.ContentType|null|undefined} contentType
+             * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @instance
+             */
+            AIRichResponseContentItemsMetadata.prototype.contentType = null;
+
+            // OneOf field names bound to virtual getters and setters
+            var $oneOfFields;
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(AIRichResponseContentItemsMetadata.prototype, "_contentType", {
+                get: $util.oneOfGetter($oneOfFields = ["contentType"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            /**
+             * Creates a new AIRichResponseContentItemsMetadata instance using the specified properties.
+             * @function create
+             * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {proto.AIRichResponseMessage.IAIRichResponseContentItemsMetadata=} [properties] Properties to set
+             * @returns {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata} AIRichResponseContentItemsMetadata instance
+             */
+            AIRichResponseContentItemsMetadata.create = function create(properties) {
+                return new AIRichResponseContentItemsMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified AIRichResponseContentItemsMetadata message. Does not implicitly {@link proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {proto.AIRichResponseMessage.IAIRichResponseContentItemsMetadata} message AIRichResponseContentItemsMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseContentItemsMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.itemsMetadata != null && message.itemsMetadata.length)
+                    for (var i = 0; i < message.itemsMetadata.length; ++i)
+                        $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.encode(message.itemsMetadata[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.contentType != null && Object.hasOwnProperty.call(message, "contentType"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.contentType);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified AIRichResponseContentItemsMetadata message, length delimited. Does not implicitly {@link proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {proto.AIRichResponseMessage.IAIRichResponseContentItemsMetadata} message AIRichResponseContentItemsMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseContentItemsMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a AIRichResponseContentItemsMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata} AIRichResponseContentItemsMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseContentItemsMetadata.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            if (!(message.itemsMetadata && message.itemsMetadata.length))
+                                message.itemsMetadata = [];
+                            message.itemsMetadata.push($root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 2: {
+                            message.contentType = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a AIRichResponseContentItemsMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata} AIRichResponseContentItemsMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseContentItemsMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a AIRichResponseContentItemsMetadata message.
+             * @function verify
+             * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            AIRichResponseContentItemsMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                var properties = {};
+                if (message.itemsMetadata != null && message.hasOwnProperty("itemsMetadata")) {
+                    if (!Array.isArray(message.itemsMetadata))
+                        return "itemsMetadata: array expected";
+                    for (var i = 0; i < message.itemsMetadata.length; ++i) {
+                        var error = $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.verify(message.itemsMetadata[i]);
+                        if (error)
+                            return "itemsMetadata." + error;
+                    }
+                }
+                if (message.contentType != null && message.hasOwnProperty("contentType")) {
+                    properties._contentType = 1;
+                    switch (message.contentType) {
+                    default:
+                        return "contentType: enum value expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
+                }
+                return null;
+            };
+
+            /**
+             * Creates a AIRichResponseContentItemsMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata} AIRichResponseContentItemsMetadata
+             */
+            AIRichResponseContentItemsMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata)
+                    return object;
+                var message = new $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata();
+                if (object.itemsMetadata) {
+                    if (!Array.isArray(object.itemsMetadata))
+                        throw TypeError(".proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.itemsMetadata: array expected");
+                    message.itemsMetadata = [];
+                    for (var i = 0; i < object.itemsMetadata.length; ++i) {
+                        if (typeof object.itemsMetadata[i] !== "object")
+                            throw TypeError(".proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.itemsMetadata: object expected");
+                        message.itemsMetadata[i] = $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.fromObject(object.itemsMetadata[i]);
+                    }
+                }
+                switch (object.contentType) {
+                default:
+                    if (typeof object.contentType === "number") {
+                        message.contentType = object.contentType;
+                        break;
+                    }
+                    break;
+                case "DEFAULT":
+                case 0:
+                    message.contentType = 0;
+                    break;
+                case "CAROUSEL":
+                case 1:
+                    message.contentType = 1;
+                    break;
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a AIRichResponseContentItemsMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata} message AIRichResponseContentItemsMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            AIRichResponseContentItemsMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.itemsMetadata = [];
+                if (message.itemsMetadata && message.itemsMetadata.length) {
+                    object.itemsMetadata = [];
+                    for (var j = 0; j < message.itemsMetadata.length; ++j)
+                        object.itemsMetadata[j] = $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.toObject(message.itemsMetadata[j], options);
+                }
+                if (message.contentType != null && message.hasOwnProperty("contentType")) {
+                    object.contentType = options.enums === String ? $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.ContentType[message.contentType] === undefined ? message.contentType : $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.ContentType[message.contentType] : message.contentType;
+                    if (options.oneofs)
+                        object._contentType = "contentType";
+                }
+                return object;
+            };
+
+            /**
+             * Converts this AIRichResponseContentItemsMetadata to JSON.
+             * @function toJSON
+             * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            AIRichResponseContentItemsMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for AIRichResponseContentItemsMetadata
+             * @function getTypeUrl
+             * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            AIRichResponseContentItemsMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata";
+            };
+
+            AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata = (function() {
+
+                /**
+                 * Properties of a AIRichResponseContentItemMetadata.
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+                 * @interface IAIRichResponseContentItemMetadata
+                 * @property {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseReelItem|null} [reelItem] AIRichResponseContentItemMetadata reelItem
+                 */
+
+                /**
+                 * Constructs a new AIRichResponseContentItemMetadata.
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+                 * @classdesc Represents a AIRichResponseContentItemMetadata.
+                 * @implements IAIRichResponseContentItemMetadata
+                 * @constructor
+                 * @param {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseContentItemMetadata=} [properties] Properties to set
+                 */
+                function AIRichResponseContentItemMetadata(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * AIRichResponseContentItemMetadata reelItem.
+                 * @member {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseReelItem|null|undefined} reelItem
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @instance
+                 */
+                AIRichResponseContentItemMetadata.prototype.reelItem = null;
+
+                // OneOf field names bound to virtual getters and setters
+                var $oneOfFields;
+
+                /**
+                 * AIRichResponseContentItemMetadata aIRichResponseContentItem.
+                 * @member {"reelItem"|undefined} aIRichResponseContentItem
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @instance
+                 */
+                Object.defineProperty(AIRichResponseContentItemMetadata.prototype, "aIRichResponseContentItem", {
+                    get: $util.oneOfGetter($oneOfFields = ["reelItem"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                /**
+                 * Creates a new AIRichResponseContentItemMetadata instance using the specified properties.
+                 * @function create
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseContentItemMetadata=} [properties] Properties to set
+                 * @returns {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata} AIRichResponseContentItemMetadata instance
+                 */
+                AIRichResponseContentItemMetadata.create = function create(properties) {
+                    return new AIRichResponseContentItemMetadata(properties);
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseContentItemMetadata message. Does not implicitly {@link proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.verify|verify} messages.
+                 * @function encode
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseContentItemMetadata} message AIRichResponseContentItemMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseContentItemMetadata.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.reelItem != null && Object.hasOwnProperty.call(message, "reelItem"))
+                        $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.encode(message.reelItem, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseContentItemMetadata message, length delimited. Does not implicitly {@link proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseContentItemMetadata} message AIRichResponseContentItemMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseContentItemMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a AIRichResponseContentItemMetadata message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata} AIRichResponseContentItemMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseContentItemMetadata.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.reelItem = $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.decode(reader, reader.uint32());
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a AIRichResponseContentItemMetadata message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata} AIRichResponseContentItemMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseContentItemMetadata.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a AIRichResponseContentItemMetadata message.
+                 * @function verify
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                AIRichResponseContentItemMetadata.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    var properties = {};
+                    if (message.reelItem != null && message.hasOwnProperty("reelItem")) {
+                        properties.aIRichResponseContentItem = 1;
+                        {
+                            var error = $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.verify(message.reelItem);
+                            if (error)
+                                return "reelItem." + error;
+                        }
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates a AIRichResponseContentItemMetadata message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata} AIRichResponseContentItemMetadata
+                 */
+                AIRichResponseContentItemMetadata.fromObject = function fromObject(object) {
+                    if (object instanceof $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata)
+                        return object;
+                    var message = new $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata();
+                    if (object.reelItem != null) {
+                        if (typeof object.reelItem !== "object")
+                            throw TypeError(".proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.reelItem: object expected");
+                        message.reelItem = $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.fromObject(object.reelItem);
+                    }
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a AIRichResponseContentItemMetadata message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata} message AIRichResponseContentItemMetadata
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                AIRichResponseContentItemMetadata.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (message.reelItem != null && message.hasOwnProperty("reelItem")) {
+                        object.reelItem = $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.toObject(message.reelItem, options);
+                        if (options.oneofs)
+                            object.aIRichResponseContentItem = "reelItem";
+                    }
+                    return object;
+                };
+
+                /**
+                 * Converts this AIRichResponseContentItemMetadata to JSON.
+                 * @function toJSON
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                AIRichResponseContentItemMetadata.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for AIRichResponseContentItemMetadata
+                 * @function getTypeUrl
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                AIRichResponseContentItemMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata";
+                };
+
+                return AIRichResponseContentItemMetadata;
+            })();
+
+            AIRichResponseContentItemsMetadata.AIRichResponseReelItem = (function() {
+
+                /**
+                 * Properties of a AIRichResponseReelItem.
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+                 * @interface IAIRichResponseReelItem
+                 * @property {string|null} [title] AIRichResponseReelItem title
+                 * @property {string|null} [profileIconUrl] AIRichResponseReelItem profileIconUrl
+                 * @property {string|null} [thumbnailUrl] AIRichResponseReelItem thumbnailUrl
+                 * @property {string|null} [videoUrl] AIRichResponseReelItem videoUrl
+                 */
+
+                /**
+                 * Constructs a new AIRichResponseReelItem.
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+                 * @classdesc Represents a AIRichResponseReelItem.
+                 * @implements IAIRichResponseReelItem
+                 * @constructor
+                 * @param {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseReelItem=} [properties] Properties to set
+                 */
+                function AIRichResponseReelItem(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * AIRichResponseReelItem title.
+                 * @member {string|null|undefined} title
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @instance
+                 */
+                AIRichResponseReelItem.prototype.title = null;
+
+                /**
+                 * AIRichResponseReelItem profileIconUrl.
+                 * @member {string|null|undefined} profileIconUrl
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @instance
+                 */
+                AIRichResponseReelItem.prototype.profileIconUrl = null;
+
+                /**
+                 * AIRichResponseReelItem thumbnailUrl.
+                 * @member {string|null|undefined} thumbnailUrl
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @instance
+                 */
+                AIRichResponseReelItem.prototype.thumbnailUrl = null;
+
+                /**
+                 * AIRichResponseReelItem videoUrl.
+                 * @member {string|null|undefined} videoUrl
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @instance
+                 */
+                AIRichResponseReelItem.prototype.videoUrl = null;
+
+                // OneOf field names bound to virtual getters and setters
+                var $oneOfFields;
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(AIRichResponseReelItem.prototype, "_title", {
+                    get: $util.oneOfGetter($oneOfFields = ["title"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(AIRichResponseReelItem.prototype, "_profileIconUrl", {
+                    get: $util.oneOfGetter($oneOfFields = ["profileIconUrl"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(AIRichResponseReelItem.prototype, "_thumbnailUrl", {
+                    get: $util.oneOfGetter($oneOfFields = ["thumbnailUrl"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(AIRichResponseReelItem.prototype, "_videoUrl", {
+                    get: $util.oneOfGetter($oneOfFields = ["videoUrl"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                /**
+                 * Creates a new AIRichResponseReelItem instance using the specified properties.
+                 * @function create
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseReelItem=} [properties] Properties to set
+                 * @returns {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem} AIRichResponseReelItem instance
+                 */
+                AIRichResponseReelItem.create = function create(properties) {
+                    return new AIRichResponseReelItem(properties);
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseReelItem message. Does not implicitly {@link proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.verify|verify} messages.
+                 * @function encode
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseReelItem} message AIRichResponseReelItem message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseReelItem.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.title != null && Object.hasOwnProperty.call(message, "title"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.title);
+                    if (message.profileIconUrl != null && Object.hasOwnProperty.call(message, "profileIconUrl"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.profileIconUrl);
+                    if (message.thumbnailUrl != null && Object.hasOwnProperty.call(message, "thumbnailUrl"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.thumbnailUrl);
+                    if (message.videoUrl != null && Object.hasOwnProperty.call(message, "videoUrl"))
+                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.videoUrl);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseReelItem message, length delimited. Does not implicitly {@link proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseReelItem} message AIRichResponseReelItem message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseReelItem.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a AIRichResponseReelItem message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem} AIRichResponseReelItem
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseReelItem.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.title = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.profileIconUrl = reader.string();
+                                break;
+                            }
+                        case 3: {
+                                message.thumbnailUrl = reader.string();
+                                break;
+                            }
+                        case 4: {
+                                message.videoUrl = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a AIRichResponseReelItem message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem} AIRichResponseReelItem
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseReelItem.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a AIRichResponseReelItem message.
+                 * @function verify
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                AIRichResponseReelItem.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    var properties = {};
+                    if (message.title != null && message.hasOwnProperty("title")) {
+                        properties._title = 1;
+                        if (!$util.isString(message.title))
+                            return "title: string expected";
+                    }
+                    if (message.profileIconUrl != null && message.hasOwnProperty("profileIconUrl")) {
+                        properties._profileIconUrl = 1;
+                        if (!$util.isString(message.profileIconUrl))
+                            return "profileIconUrl: string expected";
+                    }
+                    if (message.thumbnailUrl != null && message.hasOwnProperty("thumbnailUrl")) {
+                        properties._thumbnailUrl = 1;
+                        if (!$util.isString(message.thumbnailUrl))
+                            return "thumbnailUrl: string expected";
+                    }
+                    if (message.videoUrl != null && message.hasOwnProperty("videoUrl")) {
+                        properties._videoUrl = 1;
+                        if (!$util.isString(message.videoUrl))
+                            return "videoUrl: string expected";
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates a AIRichResponseReelItem message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem} AIRichResponseReelItem
+                 */
+                AIRichResponseReelItem.fromObject = function fromObject(object) {
+                    if (object instanceof $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem)
+                        return object;
+                    var message = new $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem();
+                    if (object.title != null)
+                        message.title = String(object.title);
+                    if (object.profileIconUrl != null)
+                        message.profileIconUrl = String(object.profileIconUrl);
+                    if (object.thumbnailUrl != null)
+                        message.thumbnailUrl = String(object.thumbnailUrl);
+                    if (object.videoUrl != null)
+                        message.videoUrl = String(object.videoUrl);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a AIRichResponseReelItem message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem} message AIRichResponseReelItem
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                AIRichResponseReelItem.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (message.title != null && message.hasOwnProperty("title")) {
+                        object.title = message.title;
+                        if (options.oneofs)
+                            object._title = "title";
+                    }
+                    if (message.profileIconUrl != null && message.hasOwnProperty("profileIconUrl")) {
+                        object.profileIconUrl = message.profileIconUrl;
+                        if (options.oneofs)
+                            object._profileIconUrl = "profileIconUrl";
+                    }
+                    if (message.thumbnailUrl != null && message.hasOwnProperty("thumbnailUrl")) {
+                        object.thumbnailUrl = message.thumbnailUrl;
+                        if (options.oneofs)
+                            object._thumbnailUrl = "thumbnailUrl";
+                    }
+                    if (message.videoUrl != null && message.hasOwnProperty("videoUrl")) {
+                        object.videoUrl = message.videoUrl;
+                        if (options.oneofs)
+                            object._videoUrl = "videoUrl";
+                    }
+                    return object;
+                };
+
+                /**
+                 * Converts this AIRichResponseReelItem to JSON.
+                 * @function toJSON
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                AIRichResponseReelItem.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for AIRichResponseReelItem
+                 * @function getTypeUrl
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                AIRichResponseReelItem.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem";
+                };
+
+                return AIRichResponseReelItem;
+            })();
+
+            /**
+             * ContentType enum.
+             * @name proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.ContentType
+             * @enum {number}
+             * @property {number} DEFAULT=0 DEFAULT value
+             * @property {number} CAROUSEL=1 CAROUSEL value
+             */
+            AIRichResponseContentItemsMetadata.ContentType = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "DEFAULT"] = 0;
+                values[valuesById[1] = "CAROUSEL"] = 1;
+                return values;
+            })();
+
+            return AIRichResponseContentItemsMetadata;
         })();
 
         AIRichResponseMessage.AIRichResponseDynamicMetadata = (function() {
@@ -3868,6 +4962,1356 @@ $root.proto = (function() {
             return AIRichResponseInlineImageMetadata;
         })();
 
+        AIRichResponseMessage.AIRichResponseLatexMetadata = (function() {
+
+            /**
+             * Properties of a AIRichResponseLatexMetadata.
+             * @memberof proto.AIRichResponseMessage
+             * @interface IAIRichResponseLatexMetadata
+             * @property {string|null} [text] AIRichResponseLatexMetadata text
+             * @property {Array.<proto.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression>|null} [expressions] AIRichResponseLatexMetadata expressions
+             */
+
+            /**
+             * Constructs a new AIRichResponseLatexMetadata.
+             * @memberof proto.AIRichResponseMessage
+             * @classdesc Represents a AIRichResponseLatexMetadata.
+             * @implements IAIRichResponseLatexMetadata
+             * @constructor
+             * @param {proto.AIRichResponseMessage.IAIRichResponseLatexMetadata=} [properties] Properties to set
+             */
+            function AIRichResponseLatexMetadata(properties) {
+                this.expressions = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * AIRichResponseLatexMetadata text.
+             * @member {string|null|undefined} text
+             * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @instance
+             */
+            AIRichResponseLatexMetadata.prototype.text = null;
+
+            /**
+             * AIRichResponseLatexMetadata expressions.
+             * @member {Array.<proto.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression>} expressions
+             * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @instance
+             */
+            AIRichResponseLatexMetadata.prototype.expressions = $util.emptyArray;
+
+            // OneOf field names bound to virtual getters and setters
+            var $oneOfFields;
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(AIRichResponseLatexMetadata.prototype, "_text", {
+                get: $util.oneOfGetter($oneOfFields = ["text"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            /**
+             * Creates a new AIRichResponseLatexMetadata instance using the specified properties.
+             * @function create
+             * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {proto.AIRichResponseMessage.IAIRichResponseLatexMetadata=} [properties] Properties to set
+             * @returns {proto.AIRichResponseMessage.AIRichResponseLatexMetadata} AIRichResponseLatexMetadata instance
+             */
+            AIRichResponseLatexMetadata.create = function create(properties) {
+                return new AIRichResponseLatexMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified AIRichResponseLatexMetadata message. Does not implicitly {@link proto.AIRichResponseMessage.AIRichResponseLatexMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {proto.AIRichResponseMessage.IAIRichResponseLatexMetadata} message AIRichResponseLatexMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseLatexMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.text);
+                if (message.expressions != null && message.expressions.length)
+                    for (var i = 0; i < message.expressions.length; ++i)
+                        $root.proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.encode(message.expressions[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified AIRichResponseLatexMetadata message, length delimited. Does not implicitly {@link proto.AIRichResponseMessage.AIRichResponseLatexMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {proto.AIRichResponseMessage.IAIRichResponseLatexMetadata} message AIRichResponseLatexMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseLatexMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a AIRichResponseLatexMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.AIRichResponseMessage.AIRichResponseLatexMetadata} AIRichResponseLatexMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseLatexMetadata.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.AIRichResponseMessage.AIRichResponseLatexMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.text = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            if (!(message.expressions && message.expressions.length))
+                                message.expressions = [];
+                            message.expressions.push($root.proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a AIRichResponseLatexMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.AIRichResponseMessage.AIRichResponseLatexMetadata} AIRichResponseLatexMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseLatexMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a AIRichResponseLatexMetadata message.
+             * @function verify
+             * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            AIRichResponseLatexMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                var properties = {};
+                if (message.text != null && message.hasOwnProperty("text")) {
+                    properties._text = 1;
+                    if (!$util.isString(message.text))
+                        return "text: string expected";
+                }
+                if (message.expressions != null && message.hasOwnProperty("expressions")) {
+                    if (!Array.isArray(message.expressions))
+                        return "expressions: array expected";
+                    for (var i = 0; i < message.expressions.length; ++i) {
+                        var error = $root.proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.verify(message.expressions[i]);
+                        if (error)
+                            return "expressions." + error;
+                    }
+                }
+                return null;
+            };
+
+            /**
+             * Creates a AIRichResponseLatexMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.AIRichResponseMessage.AIRichResponseLatexMetadata} AIRichResponseLatexMetadata
+             */
+            AIRichResponseLatexMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.AIRichResponseMessage.AIRichResponseLatexMetadata)
+                    return object;
+                var message = new $root.proto.AIRichResponseMessage.AIRichResponseLatexMetadata();
+                if (object.text != null)
+                    message.text = String(object.text);
+                if (object.expressions) {
+                    if (!Array.isArray(object.expressions))
+                        throw TypeError(".proto.AIRichResponseMessage.AIRichResponseLatexMetadata.expressions: array expected");
+                    message.expressions = [];
+                    for (var i = 0; i < object.expressions.length; ++i) {
+                        if (typeof object.expressions[i] !== "object")
+                            throw TypeError(".proto.AIRichResponseMessage.AIRichResponseLatexMetadata.expressions: object expected");
+                        message.expressions[i] = $root.proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.fromObject(object.expressions[i]);
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a AIRichResponseLatexMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {proto.AIRichResponseMessage.AIRichResponseLatexMetadata} message AIRichResponseLatexMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            AIRichResponseLatexMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.expressions = [];
+                if (message.text != null && message.hasOwnProperty("text")) {
+                    object.text = message.text;
+                    if (options.oneofs)
+                        object._text = "text";
+                }
+                if (message.expressions && message.expressions.length) {
+                    object.expressions = [];
+                    for (var j = 0; j < message.expressions.length; ++j)
+                        object.expressions[j] = $root.proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.toObject(message.expressions[j], options);
+                }
+                return object;
+            };
+
+            /**
+             * Converts this AIRichResponseLatexMetadata to JSON.
+             * @function toJSON
+             * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            AIRichResponseLatexMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for AIRichResponseLatexMetadata
+             * @function getTypeUrl
+             * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            AIRichResponseLatexMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.AIRichResponseMessage.AIRichResponseLatexMetadata";
+            };
+
+            AIRichResponseLatexMetadata.AIRichResponseLatexExpression = (function() {
+
+                /**
+                 * Properties of a AIRichResponseLatexExpression.
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata
+                 * @interface IAIRichResponseLatexExpression
+                 * @property {string|null} [latexExpression] AIRichResponseLatexExpression latexExpression
+                 * @property {string|null} [url] AIRichResponseLatexExpression url
+                 * @property {number|null} [width] AIRichResponseLatexExpression width
+                 * @property {number|null} [height] AIRichResponseLatexExpression height
+                 * @property {number|null} [fontHeight] AIRichResponseLatexExpression fontHeight
+                 */
+
+                /**
+                 * Constructs a new AIRichResponseLatexExpression.
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata
+                 * @classdesc Represents a AIRichResponseLatexExpression.
+                 * @implements IAIRichResponseLatexExpression
+                 * @constructor
+                 * @param {proto.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression=} [properties] Properties to set
+                 */
+                function AIRichResponseLatexExpression(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * AIRichResponseLatexExpression latexExpression.
+                 * @member {string|null|undefined} latexExpression
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.latexExpression = null;
+
+                /**
+                 * AIRichResponseLatexExpression url.
+                 * @member {string|null|undefined} url
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.url = null;
+
+                /**
+                 * AIRichResponseLatexExpression width.
+                 * @member {number|null|undefined} width
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.width = null;
+
+                /**
+                 * AIRichResponseLatexExpression height.
+                 * @member {number|null|undefined} height
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.height = null;
+
+                /**
+                 * AIRichResponseLatexExpression fontHeight.
+                 * @member {number|null|undefined} fontHeight
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.fontHeight = null;
+
+                // OneOf field names bound to virtual getters and setters
+                var $oneOfFields;
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(AIRichResponseLatexExpression.prototype, "_latexExpression", {
+                    get: $util.oneOfGetter($oneOfFields = ["latexExpression"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(AIRichResponseLatexExpression.prototype, "_url", {
+                    get: $util.oneOfGetter($oneOfFields = ["url"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(AIRichResponseLatexExpression.prototype, "_width", {
+                    get: $util.oneOfGetter($oneOfFields = ["width"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(AIRichResponseLatexExpression.prototype, "_height", {
+                    get: $util.oneOfGetter($oneOfFields = ["height"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(AIRichResponseLatexExpression.prototype, "_fontHeight", {
+                    get: $util.oneOfGetter($oneOfFields = ["fontHeight"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                /**
+                 * Creates a new AIRichResponseLatexExpression instance using the specified properties.
+                 * @function create
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {proto.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression=} [properties] Properties to set
+                 * @returns {proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression} AIRichResponseLatexExpression instance
+                 */
+                AIRichResponseLatexExpression.create = function create(properties) {
+                    return new AIRichResponseLatexExpression(properties);
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseLatexExpression message. Does not implicitly {@link proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.verify|verify} messages.
+                 * @function encode
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {proto.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression} message AIRichResponseLatexExpression message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseLatexExpression.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.latexExpression != null && Object.hasOwnProperty.call(message, "latexExpression"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.latexExpression);
+                    if (message.url != null && Object.hasOwnProperty.call(message, "url"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.url);
+                    if (message.width != null && Object.hasOwnProperty.call(message, "width"))
+                        writer.uint32(/* id 3, wireType 1 =*/25).double(message.width);
+                    if (message.height != null && Object.hasOwnProperty.call(message, "height"))
+                        writer.uint32(/* id 4, wireType 1 =*/33).double(message.height);
+                    if (message.fontHeight != null && Object.hasOwnProperty.call(message, "fontHeight"))
+                        writer.uint32(/* id 5, wireType 1 =*/41).double(message.fontHeight);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseLatexExpression message, length delimited. Does not implicitly {@link proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {proto.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression} message AIRichResponseLatexExpression message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseLatexExpression.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a AIRichResponseLatexExpression message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression} AIRichResponseLatexExpression
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseLatexExpression.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.latexExpression = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.url = reader.string();
+                                break;
+                            }
+                        case 3: {
+                                message.width = reader.double();
+                                break;
+                            }
+                        case 4: {
+                                message.height = reader.double();
+                                break;
+                            }
+                        case 5: {
+                                message.fontHeight = reader.double();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a AIRichResponseLatexExpression message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression} AIRichResponseLatexExpression
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseLatexExpression.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a AIRichResponseLatexExpression message.
+                 * @function verify
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                AIRichResponseLatexExpression.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    var properties = {};
+                    if (message.latexExpression != null && message.hasOwnProperty("latexExpression")) {
+                        properties._latexExpression = 1;
+                        if (!$util.isString(message.latexExpression))
+                            return "latexExpression: string expected";
+                    }
+                    if (message.url != null && message.hasOwnProperty("url")) {
+                        properties._url = 1;
+                        if (!$util.isString(message.url))
+                            return "url: string expected";
+                    }
+                    if (message.width != null && message.hasOwnProperty("width")) {
+                        properties._width = 1;
+                        if (typeof message.width !== "number")
+                            return "width: number expected";
+                    }
+                    if (message.height != null && message.hasOwnProperty("height")) {
+                        properties._height = 1;
+                        if (typeof message.height !== "number")
+                            return "height: number expected";
+                    }
+                    if (message.fontHeight != null && message.hasOwnProperty("fontHeight")) {
+                        properties._fontHeight = 1;
+                        if (typeof message.fontHeight !== "number")
+                            return "fontHeight: number expected";
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates a AIRichResponseLatexExpression message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression} AIRichResponseLatexExpression
+                 */
+                AIRichResponseLatexExpression.fromObject = function fromObject(object) {
+                    if (object instanceof $root.proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression)
+                        return object;
+                    var message = new $root.proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression();
+                    if (object.latexExpression != null)
+                        message.latexExpression = String(object.latexExpression);
+                    if (object.url != null)
+                        message.url = String(object.url);
+                    if (object.width != null)
+                        message.width = Number(object.width);
+                    if (object.height != null)
+                        message.height = Number(object.height);
+                    if (object.fontHeight != null)
+                        message.fontHeight = Number(object.fontHeight);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a AIRichResponseLatexExpression message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression} message AIRichResponseLatexExpression
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                AIRichResponseLatexExpression.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (message.latexExpression != null && message.hasOwnProperty("latexExpression")) {
+                        object.latexExpression = message.latexExpression;
+                        if (options.oneofs)
+                            object._latexExpression = "latexExpression";
+                    }
+                    if (message.url != null && message.hasOwnProperty("url")) {
+                        object.url = message.url;
+                        if (options.oneofs)
+                            object._url = "url";
+                    }
+                    if (message.width != null && message.hasOwnProperty("width")) {
+                        object.width = options.json && !isFinite(message.width) ? String(message.width) : message.width;
+                        if (options.oneofs)
+                            object._width = "width";
+                    }
+                    if (message.height != null && message.hasOwnProperty("height")) {
+                        object.height = options.json && !isFinite(message.height) ? String(message.height) : message.height;
+                        if (options.oneofs)
+                            object._height = "height";
+                    }
+                    if (message.fontHeight != null && message.hasOwnProperty("fontHeight")) {
+                        object.fontHeight = options.json && !isFinite(message.fontHeight) ? String(message.fontHeight) : message.fontHeight;
+                        if (options.oneofs)
+                            object._fontHeight = "fontHeight";
+                    }
+                    return object;
+                };
+
+                /**
+                 * Converts this AIRichResponseLatexExpression to JSON.
+                 * @function toJSON
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                AIRichResponseLatexExpression.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for AIRichResponseLatexExpression
+                 * @function getTypeUrl
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                AIRichResponseLatexExpression.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/proto.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression";
+                };
+
+                return AIRichResponseLatexExpression;
+            })();
+
+            return AIRichResponseLatexMetadata;
+        })();
+
+        AIRichResponseMessage.AIRichResponseMapMetadata = (function() {
+
+            /**
+             * Properties of a AIRichResponseMapMetadata.
+             * @memberof proto.AIRichResponseMessage
+             * @interface IAIRichResponseMapMetadata
+             * @property {number|null} [centerLatitude] AIRichResponseMapMetadata centerLatitude
+             * @property {number|null} [centerLongitude] AIRichResponseMapMetadata centerLongitude
+             * @property {number|null} [latitudeDelta] AIRichResponseMapMetadata latitudeDelta
+             * @property {number|null} [longitudeDelta] AIRichResponseMapMetadata longitudeDelta
+             * @property {Array.<proto.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation>|null} [annotations] AIRichResponseMapMetadata annotations
+             * @property {boolean|null} [showInfoList] AIRichResponseMapMetadata showInfoList
+             */
+
+            /**
+             * Constructs a new AIRichResponseMapMetadata.
+             * @memberof proto.AIRichResponseMessage
+             * @classdesc Represents a AIRichResponseMapMetadata.
+             * @implements IAIRichResponseMapMetadata
+             * @constructor
+             * @param {proto.AIRichResponseMessage.IAIRichResponseMapMetadata=} [properties] Properties to set
+             */
+            function AIRichResponseMapMetadata(properties) {
+                this.annotations = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * AIRichResponseMapMetadata centerLatitude.
+             * @member {number|null|undefined} centerLatitude
+             * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @instance
+             */
+            AIRichResponseMapMetadata.prototype.centerLatitude = null;
+
+            /**
+             * AIRichResponseMapMetadata centerLongitude.
+             * @member {number|null|undefined} centerLongitude
+             * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @instance
+             */
+            AIRichResponseMapMetadata.prototype.centerLongitude = null;
+
+            /**
+             * AIRichResponseMapMetadata latitudeDelta.
+             * @member {number|null|undefined} latitudeDelta
+             * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @instance
+             */
+            AIRichResponseMapMetadata.prototype.latitudeDelta = null;
+
+            /**
+             * AIRichResponseMapMetadata longitudeDelta.
+             * @member {number|null|undefined} longitudeDelta
+             * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @instance
+             */
+            AIRichResponseMapMetadata.prototype.longitudeDelta = null;
+
+            /**
+             * AIRichResponseMapMetadata annotations.
+             * @member {Array.<proto.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation>} annotations
+             * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @instance
+             */
+            AIRichResponseMapMetadata.prototype.annotations = $util.emptyArray;
+
+            /**
+             * AIRichResponseMapMetadata showInfoList.
+             * @member {boolean|null|undefined} showInfoList
+             * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @instance
+             */
+            AIRichResponseMapMetadata.prototype.showInfoList = null;
+
+            // OneOf field names bound to virtual getters and setters
+            var $oneOfFields;
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(AIRichResponseMapMetadata.prototype, "_centerLatitude", {
+                get: $util.oneOfGetter($oneOfFields = ["centerLatitude"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(AIRichResponseMapMetadata.prototype, "_centerLongitude", {
+                get: $util.oneOfGetter($oneOfFields = ["centerLongitude"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(AIRichResponseMapMetadata.prototype, "_latitudeDelta", {
+                get: $util.oneOfGetter($oneOfFields = ["latitudeDelta"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(AIRichResponseMapMetadata.prototype, "_longitudeDelta", {
+                get: $util.oneOfGetter($oneOfFields = ["longitudeDelta"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(AIRichResponseMapMetadata.prototype, "_showInfoList", {
+                get: $util.oneOfGetter($oneOfFields = ["showInfoList"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            /**
+             * Creates a new AIRichResponseMapMetadata instance using the specified properties.
+             * @function create
+             * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {proto.AIRichResponseMessage.IAIRichResponseMapMetadata=} [properties] Properties to set
+             * @returns {proto.AIRichResponseMessage.AIRichResponseMapMetadata} AIRichResponseMapMetadata instance
+             */
+            AIRichResponseMapMetadata.create = function create(properties) {
+                return new AIRichResponseMapMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified AIRichResponseMapMetadata message. Does not implicitly {@link proto.AIRichResponseMessage.AIRichResponseMapMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {proto.AIRichResponseMessage.IAIRichResponseMapMetadata} message AIRichResponseMapMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseMapMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.centerLatitude != null && Object.hasOwnProperty.call(message, "centerLatitude"))
+                    writer.uint32(/* id 1, wireType 1 =*/9).double(message.centerLatitude);
+                if (message.centerLongitude != null && Object.hasOwnProperty.call(message, "centerLongitude"))
+                    writer.uint32(/* id 2, wireType 1 =*/17).double(message.centerLongitude);
+                if (message.latitudeDelta != null && Object.hasOwnProperty.call(message, "latitudeDelta"))
+                    writer.uint32(/* id 3, wireType 1 =*/25).double(message.latitudeDelta);
+                if (message.longitudeDelta != null && Object.hasOwnProperty.call(message, "longitudeDelta"))
+                    writer.uint32(/* id 4, wireType 1 =*/33).double(message.longitudeDelta);
+                if (message.annotations != null && message.annotations.length)
+                    for (var i = 0; i < message.annotations.length; ++i)
+                        $root.proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.encode(message.annotations[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                if (message.showInfoList != null && Object.hasOwnProperty.call(message, "showInfoList"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).bool(message.showInfoList);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified AIRichResponseMapMetadata message, length delimited. Does not implicitly {@link proto.AIRichResponseMessage.AIRichResponseMapMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {proto.AIRichResponseMessage.IAIRichResponseMapMetadata} message AIRichResponseMapMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseMapMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a AIRichResponseMapMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.AIRichResponseMessage.AIRichResponseMapMetadata} AIRichResponseMapMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseMapMetadata.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.AIRichResponseMessage.AIRichResponseMapMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.centerLatitude = reader.double();
+                            break;
+                        }
+                    case 2: {
+                            message.centerLongitude = reader.double();
+                            break;
+                        }
+                    case 3: {
+                            message.latitudeDelta = reader.double();
+                            break;
+                        }
+                    case 4: {
+                            message.longitudeDelta = reader.double();
+                            break;
+                        }
+                    case 5: {
+                            if (!(message.annotations && message.annotations.length))
+                                message.annotations = [];
+                            message.annotations.push($root.proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 6: {
+                            message.showInfoList = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a AIRichResponseMapMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.AIRichResponseMessage.AIRichResponseMapMetadata} AIRichResponseMapMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseMapMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a AIRichResponseMapMetadata message.
+             * @function verify
+             * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            AIRichResponseMapMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                var properties = {};
+                if (message.centerLatitude != null && message.hasOwnProperty("centerLatitude")) {
+                    properties._centerLatitude = 1;
+                    if (typeof message.centerLatitude !== "number")
+                        return "centerLatitude: number expected";
+                }
+                if (message.centerLongitude != null && message.hasOwnProperty("centerLongitude")) {
+                    properties._centerLongitude = 1;
+                    if (typeof message.centerLongitude !== "number")
+                        return "centerLongitude: number expected";
+                }
+                if (message.latitudeDelta != null && message.hasOwnProperty("latitudeDelta")) {
+                    properties._latitudeDelta = 1;
+                    if (typeof message.latitudeDelta !== "number")
+                        return "latitudeDelta: number expected";
+                }
+                if (message.longitudeDelta != null && message.hasOwnProperty("longitudeDelta")) {
+                    properties._longitudeDelta = 1;
+                    if (typeof message.longitudeDelta !== "number")
+                        return "longitudeDelta: number expected";
+                }
+                if (message.annotations != null && message.hasOwnProperty("annotations")) {
+                    if (!Array.isArray(message.annotations))
+                        return "annotations: array expected";
+                    for (var i = 0; i < message.annotations.length; ++i) {
+                        var error = $root.proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.verify(message.annotations[i]);
+                        if (error)
+                            return "annotations." + error;
+                    }
+                }
+                if (message.showInfoList != null && message.hasOwnProperty("showInfoList")) {
+                    properties._showInfoList = 1;
+                    if (typeof message.showInfoList !== "boolean")
+                        return "showInfoList: boolean expected";
+                }
+                return null;
+            };
+
+            /**
+             * Creates a AIRichResponseMapMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.AIRichResponseMessage.AIRichResponseMapMetadata} AIRichResponseMapMetadata
+             */
+            AIRichResponseMapMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.AIRichResponseMessage.AIRichResponseMapMetadata)
+                    return object;
+                var message = new $root.proto.AIRichResponseMessage.AIRichResponseMapMetadata();
+                if (object.centerLatitude != null)
+                    message.centerLatitude = Number(object.centerLatitude);
+                if (object.centerLongitude != null)
+                    message.centerLongitude = Number(object.centerLongitude);
+                if (object.latitudeDelta != null)
+                    message.latitudeDelta = Number(object.latitudeDelta);
+                if (object.longitudeDelta != null)
+                    message.longitudeDelta = Number(object.longitudeDelta);
+                if (object.annotations) {
+                    if (!Array.isArray(object.annotations))
+                        throw TypeError(".proto.AIRichResponseMessage.AIRichResponseMapMetadata.annotations: array expected");
+                    message.annotations = [];
+                    for (var i = 0; i < object.annotations.length; ++i) {
+                        if (typeof object.annotations[i] !== "object")
+                            throw TypeError(".proto.AIRichResponseMessage.AIRichResponseMapMetadata.annotations: object expected");
+                        message.annotations[i] = $root.proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.fromObject(object.annotations[i]);
+                    }
+                }
+                if (object.showInfoList != null)
+                    message.showInfoList = Boolean(object.showInfoList);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a AIRichResponseMapMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {proto.AIRichResponseMessage.AIRichResponseMapMetadata} message AIRichResponseMapMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            AIRichResponseMapMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.annotations = [];
+                if (message.centerLatitude != null && message.hasOwnProperty("centerLatitude")) {
+                    object.centerLatitude = options.json && !isFinite(message.centerLatitude) ? String(message.centerLatitude) : message.centerLatitude;
+                    if (options.oneofs)
+                        object._centerLatitude = "centerLatitude";
+                }
+                if (message.centerLongitude != null && message.hasOwnProperty("centerLongitude")) {
+                    object.centerLongitude = options.json && !isFinite(message.centerLongitude) ? String(message.centerLongitude) : message.centerLongitude;
+                    if (options.oneofs)
+                        object._centerLongitude = "centerLongitude";
+                }
+                if (message.latitudeDelta != null && message.hasOwnProperty("latitudeDelta")) {
+                    object.latitudeDelta = options.json && !isFinite(message.latitudeDelta) ? String(message.latitudeDelta) : message.latitudeDelta;
+                    if (options.oneofs)
+                        object._latitudeDelta = "latitudeDelta";
+                }
+                if (message.longitudeDelta != null && message.hasOwnProperty("longitudeDelta")) {
+                    object.longitudeDelta = options.json && !isFinite(message.longitudeDelta) ? String(message.longitudeDelta) : message.longitudeDelta;
+                    if (options.oneofs)
+                        object._longitudeDelta = "longitudeDelta";
+                }
+                if (message.annotations && message.annotations.length) {
+                    object.annotations = [];
+                    for (var j = 0; j < message.annotations.length; ++j)
+                        object.annotations[j] = $root.proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.toObject(message.annotations[j], options);
+                }
+                if (message.showInfoList != null && message.hasOwnProperty("showInfoList")) {
+                    object.showInfoList = message.showInfoList;
+                    if (options.oneofs)
+                        object._showInfoList = "showInfoList";
+                }
+                return object;
+            };
+
+            /**
+             * Converts this AIRichResponseMapMetadata to JSON.
+             * @function toJSON
+             * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            AIRichResponseMapMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for AIRichResponseMapMetadata
+             * @function getTypeUrl
+             * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            AIRichResponseMapMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.AIRichResponseMessage.AIRichResponseMapMetadata";
+            };
+
+            AIRichResponseMapMetadata.AIRichResponseMapAnnotation = (function() {
+
+                /**
+                 * Properties of a AIRichResponseMapAnnotation.
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+                 * @interface IAIRichResponseMapAnnotation
+                 * @property {number|null} [annotationNumber] AIRichResponseMapAnnotation annotationNumber
+                 * @property {number|null} [latitude] AIRichResponseMapAnnotation latitude
+                 * @property {number|null} [longitude] AIRichResponseMapAnnotation longitude
+                 * @property {string|null} [title] AIRichResponseMapAnnotation title
+                 * @property {string|null} [body] AIRichResponseMapAnnotation body
+                 */
+
+                /**
+                 * Constructs a new AIRichResponseMapAnnotation.
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata
+                 * @classdesc Represents a AIRichResponseMapAnnotation.
+                 * @implements IAIRichResponseMapAnnotation
+                 * @constructor
+                 * @param {proto.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation=} [properties] Properties to set
+                 */
+                function AIRichResponseMapAnnotation(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * AIRichResponseMapAnnotation annotationNumber.
+                 * @member {number|null|undefined} annotationNumber
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @instance
+                 */
+                AIRichResponseMapAnnotation.prototype.annotationNumber = null;
+
+                /**
+                 * AIRichResponseMapAnnotation latitude.
+                 * @member {number|null|undefined} latitude
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @instance
+                 */
+                AIRichResponseMapAnnotation.prototype.latitude = null;
+
+                /**
+                 * AIRichResponseMapAnnotation longitude.
+                 * @member {number|null|undefined} longitude
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @instance
+                 */
+                AIRichResponseMapAnnotation.prototype.longitude = null;
+
+                /**
+                 * AIRichResponseMapAnnotation title.
+                 * @member {string|null|undefined} title
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @instance
+                 */
+                AIRichResponseMapAnnotation.prototype.title = null;
+
+                /**
+                 * AIRichResponseMapAnnotation body.
+                 * @member {string|null|undefined} body
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @instance
+                 */
+                AIRichResponseMapAnnotation.prototype.body = null;
+
+                // OneOf field names bound to virtual getters and setters
+                var $oneOfFields;
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(AIRichResponseMapAnnotation.prototype, "_annotationNumber", {
+                    get: $util.oneOfGetter($oneOfFields = ["annotationNumber"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(AIRichResponseMapAnnotation.prototype, "_latitude", {
+                    get: $util.oneOfGetter($oneOfFields = ["latitude"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(AIRichResponseMapAnnotation.prototype, "_longitude", {
+                    get: $util.oneOfGetter($oneOfFields = ["longitude"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(AIRichResponseMapAnnotation.prototype, "_title", {
+                    get: $util.oneOfGetter($oneOfFields = ["title"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(AIRichResponseMapAnnotation.prototype, "_body", {
+                    get: $util.oneOfGetter($oneOfFields = ["body"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                /**
+                 * Creates a new AIRichResponseMapAnnotation instance using the specified properties.
+                 * @function create
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {proto.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation=} [properties] Properties to set
+                 * @returns {proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation} AIRichResponseMapAnnotation instance
+                 */
+                AIRichResponseMapAnnotation.create = function create(properties) {
+                    return new AIRichResponseMapAnnotation(properties);
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseMapAnnotation message. Does not implicitly {@link proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.verify|verify} messages.
+                 * @function encode
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {proto.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation} message AIRichResponseMapAnnotation message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseMapAnnotation.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.annotationNumber != null && Object.hasOwnProperty.call(message, "annotationNumber"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.annotationNumber);
+                    if (message.latitude != null && Object.hasOwnProperty.call(message, "latitude"))
+                        writer.uint32(/* id 2, wireType 1 =*/17).double(message.latitude);
+                    if (message.longitude != null && Object.hasOwnProperty.call(message, "longitude"))
+                        writer.uint32(/* id 3, wireType 1 =*/25).double(message.longitude);
+                    if (message.title != null && Object.hasOwnProperty.call(message, "title"))
+                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.title);
+                    if (message.body != null && Object.hasOwnProperty.call(message, "body"))
+                        writer.uint32(/* id 5, wireType 2 =*/42).string(message.body);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseMapAnnotation message, length delimited. Does not implicitly {@link proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {proto.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation} message AIRichResponseMapAnnotation message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseMapAnnotation.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a AIRichResponseMapAnnotation message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation} AIRichResponseMapAnnotation
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseMapAnnotation.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.annotationNumber = reader.uint32();
+                                break;
+                            }
+                        case 2: {
+                                message.latitude = reader.double();
+                                break;
+                            }
+                        case 3: {
+                                message.longitude = reader.double();
+                                break;
+                            }
+                        case 4: {
+                                message.title = reader.string();
+                                break;
+                            }
+                        case 5: {
+                                message.body = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a AIRichResponseMapAnnotation message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation} AIRichResponseMapAnnotation
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseMapAnnotation.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a AIRichResponseMapAnnotation message.
+                 * @function verify
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                AIRichResponseMapAnnotation.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    var properties = {};
+                    if (message.annotationNumber != null && message.hasOwnProperty("annotationNumber")) {
+                        properties._annotationNumber = 1;
+                        if (!$util.isInteger(message.annotationNumber))
+                            return "annotationNumber: integer expected";
+                    }
+                    if (message.latitude != null && message.hasOwnProperty("latitude")) {
+                        properties._latitude = 1;
+                        if (typeof message.latitude !== "number")
+                            return "latitude: number expected";
+                    }
+                    if (message.longitude != null && message.hasOwnProperty("longitude")) {
+                        properties._longitude = 1;
+                        if (typeof message.longitude !== "number")
+                            return "longitude: number expected";
+                    }
+                    if (message.title != null && message.hasOwnProperty("title")) {
+                        properties._title = 1;
+                        if (!$util.isString(message.title))
+                            return "title: string expected";
+                    }
+                    if (message.body != null && message.hasOwnProperty("body")) {
+                        properties._body = 1;
+                        if (!$util.isString(message.body))
+                            return "body: string expected";
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates a AIRichResponseMapAnnotation message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation} AIRichResponseMapAnnotation
+                 */
+                AIRichResponseMapAnnotation.fromObject = function fromObject(object) {
+                    if (object instanceof $root.proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation)
+                        return object;
+                    var message = new $root.proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation();
+                    if (object.annotationNumber != null)
+                        message.annotationNumber = object.annotationNumber >>> 0;
+                    if (object.latitude != null)
+                        message.latitude = Number(object.latitude);
+                    if (object.longitude != null)
+                        message.longitude = Number(object.longitude);
+                    if (object.title != null)
+                        message.title = String(object.title);
+                    if (object.body != null)
+                        message.body = String(object.body);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a AIRichResponseMapAnnotation message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation} message AIRichResponseMapAnnotation
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                AIRichResponseMapAnnotation.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (message.annotationNumber != null && message.hasOwnProperty("annotationNumber")) {
+                        object.annotationNumber = message.annotationNumber;
+                        if (options.oneofs)
+                            object._annotationNumber = "annotationNumber";
+                    }
+                    if (message.latitude != null && message.hasOwnProperty("latitude")) {
+                        object.latitude = options.json && !isFinite(message.latitude) ? String(message.latitude) : message.latitude;
+                        if (options.oneofs)
+                            object._latitude = "latitude";
+                    }
+                    if (message.longitude != null && message.hasOwnProperty("longitude")) {
+                        object.longitude = options.json && !isFinite(message.longitude) ? String(message.longitude) : message.longitude;
+                        if (options.oneofs)
+                            object._longitude = "longitude";
+                    }
+                    if (message.title != null && message.hasOwnProperty("title")) {
+                        object.title = message.title;
+                        if (options.oneofs)
+                            object._title = "title";
+                    }
+                    if (message.body != null && message.hasOwnProperty("body")) {
+                        object.body = message.body;
+                        if (options.oneofs)
+                            object._body = "body";
+                    }
+                    return object;
+                };
+
+                /**
+                 * Converts this AIRichResponseMapAnnotation to JSON.
+                 * @function toJSON
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                AIRichResponseMapAnnotation.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for AIRichResponseMapAnnotation
+                 * @function getTypeUrl
+                 * @memberof proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                AIRichResponseMapAnnotation.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/proto.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation";
+                };
+
+                return AIRichResponseMapAnnotation;
+            })();
+
+            return AIRichResponseMapMetadata;
+        })();
+
         /**
          * AIRichResponseMessageType enum.
          * @name proto.AIRichResponseMessage.AIRichResponseMessageType
@@ -3895,6 +6339,9 @@ $root.proto = (function() {
              * @property {proto.AIRichResponseMessage.IAIRichResponseCodeMetadata|null} [codeMetadata] AIRichResponseSubMessage codeMetadata
              * @property {proto.AIRichResponseMessage.IAIRichResponseTableMetadata|null} [tableMetadata] AIRichResponseSubMessage tableMetadata
              * @property {proto.AIRichResponseMessage.IAIRichResponseDynamicMetadata|null} [dynamicMetadata] AIRichResponseSubMessage dynamicMetadata
+             * @property {proto.AIRichResponseMessage.IAIRichResponseLatexMetadata|null} [latexMetadata] AIRichResponseSubMessage latexMetadata
+             * @property {proto.AIRichResponseMessage.IAIRichResponseMapMetadata|null} [mapMetadata] AIRichResponseSubMessage mapMetadata
+             * @property {proto.AIRichResponseMessage.IAIRichResponseContentItemsMetadata|null} [contentItemsMetadata] AIRichResponseSubMessage contentItemsMetadata
              */
 
             /**
@@ -3968,6 +6415,30 @@ $root.proto = (function() {
              */
             AIRichResponseSubMessage.prototype.dynamicMetadata = null;
 
+            /**
+             * AIRichResponseSubMessage latexMetadata.
+             * @member {proto.AIRichResponseMessage.IAIRichResponseLatexMetadata|null|undefined} latexMetadata
+             * @memberof proto.AIRichResponseMessage.AIRichResponseSubMessage
+             * @instance
+             */
+            AIRichResponseSubMessage.prototype.latexMetadata = null;
+
+            /**
+             * AIRichResponseSubMessage mapMetadata.
+             * @member {proto.AIRichResponseMessage.IAIRichResponseMapMetadata|null|undefined} mapMetadata
+             * @memberof proto.AIRichResponseMessage.AIRichResponseSubMessage
+             * @instance
+             */
+            AIRichResponseSubMessage.prototype.mapMetadata = null;
+
+            /**
+             * AIRichResponseSubMessage contentItemsMetadata.
+             * @member {proto.AIRichResponseMessage.IAIRichResponseContentItemsMetadata|null|undefined} contentItemsMetadata
+             * @memberof proto.AIRichResponseMessage.AIRichResponseSubMessage
+             * @instance
+             */
+            AIRichResponseSubMessage.prototype.contentItemsMetadata = null;
+
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
@@ -4013,6 +6484,24 @@ $root.proto = (function() {
                 set: $util.oneOfSetter($oneOfFields)
             });
 
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(AIRichResponseSubMessage.prototype, "_latexMetadata", {
+                get: $util.oneOfGetter($oneOfFields = ["latexMetadata"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(AIRichResponseSubMessage.prototype, "_mapMetadata", {
+                get: $util.oneOfGetter($oneOfFields = ["mapMetadata"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(AIRichResponseSubMessage.prototype, "_contentItemsMetadata", {
+                get: $util.oneOfGetter($oneOfFields = ["contentItemsMetadata"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
             /**
              * Creates a new AIRichResponseSubMessage instance using the specified properties.
              * @function create
@@ -4051,6 +6540,12 @@ $root.proto = (function() {
                     $root.proto.AIRichResponseMessage.AIRichResponseTableMetadata.encode(message.tableMetadata, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
                 if (message.dynamicMetadata != null && Object.hasOwnProperty.call(message, "dynamicMetadata"))
                     $root.proto.AIRichResponseMessage.AIRichResponseDynamicMetadata.encode(message.dynamicMetadata, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                if (message.latexMetadata != null && Object.hasOwnProperty.call(message, "latexMetadata"))
+                    $root.proto.AIRichResponseMessage.AIRichResponseLatexMetadata.encode(message.latexMetadata, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                if (message.mapMetadata != null && Object.hasOwnProperty.call(message, "mapMetadata"))
+                    $root.proto.AIRichResponseMessage.AIRichResponseMapMetadata.encode(message.mapMetadata, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
+                if (message.contentItemsMetadata != null && Object.hasOwnProperty.call(message, "contentItemsMetadata"))
+                    $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.encode(message.contentItemsMetadata, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
                 return writer;
             };
 
@@ -4113,6 +6608,18 @@ $root.proto = (function() {
                             message.dynamicMetadata = $root.proto.AIRichResponseMessage.AIRichResponseDynamicMetadata.decode(reader, reader.uint32());
                             break;
                         }
+                    case 8: {
+                            message.latexMetadata = $root.proto.AIRichResponseMessage.AIRichResponseLatexMetadata.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 9: {
+                            message.mapMetadata = $root.proto.AIRichResponseMessage.AIRichResponseMapMetadata.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 10: {
+                            message.contentItemsMetadata = $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -4161,6 +6668,9 @@ $root.proto = (function() {
                     case 4:
                     case 5:
                     case 6:
+                    case 7:
+                    case 8:
+                    case 9:
                         break;
                     }
                 }
@@ -4207,6 +6717,30 @@ $root.proto = (function() {
                         var error = $root.proto.AIRichResponseMessage.AIRichResponseDynamicMetadata.verify(message.dynamicMetadata);
                         if (error)
                             return "dynamicMetadata." + error;
+                    }
+                }
+                if (message.latexMetadata != null && message.hasOwnProperty("latexMetadata")) {
+                    properties._latexMetadata = 1;
+                    {
+                        var error = $root.proto.AIRichResponseMessage.AIRichResponseLatexMetadata.verify(message.latexMetadata);
+                        if (error)
+                            return "latexMetadata." + error;
+                    }
+                }
+                if (message.mapMetadata != null && message.hasOwnProperty("mapMetadata")) {
+                    properties._mapMetadata = 1;
+                    {
+                        var error = $root.proto.AIRichResponseMessage.AIRichResponseMapMetadata.verify(message.mapMetadata);
+                        if (error)
+                            return "mapMetadata." + error;
+                    }
+                }
+                if (message.contentItemsMetadata != null && message.hasOwnProperty("contentItemsMetadata")) {
+                    properties._contentItemsMetadata = 1;
+                    {
+                        var error = $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.verify(message.contentItemsMetadata);
+                        if (error)
+                            return "contentItemsMetadata." + error;
                     }
                 }
                 return null;
@@ -4259,6 +6793,18 @@ $root.proto = (function() {
                 case 6:
                     message.messageType = 6;
                     break;
+                case "AI_RICH_RESPONSE_MAP":
+                case 7:
+                    message.messageType = 7;
+                    break;
+                case "AI_RICH_RESPONSE_LATEX":
+                case 8:
+                    message.messageType = 8;
+                    break;
+                case "AI_RICH_RESPONSE_CONTENT_ITEMS":
+                case 9:
+                    message.messageType = 9;
+                    break;
                 }
                 if (object.gridImageMetadata != null) {
                     if (typeof object.gridImageMetadata !== "object")
@@ -4286,6 +6832,21 @@ $root.proto = (function() {
                     if (typeof object.dynamicMetadata !== "object")
                         throw TypeError(".proto.AIRichResponseMessage.AIRichResponseSubMessage.dynamicMetadata: object expected");
                     message.dynamicMetadata = $root.proto.AIRichResponseMessage.AIRichResponseDynamicMetadata.fromObject(object.dynamicMetadata);
+                }
+                if (object.latexMetadata != null) {
+                    if (typeof object.latexMetadata !== "object")
+                        throw TypeError(".proto.AIRichResponseMessage.AIRichResponseSubMessage.latexMetadata: object expected");
+                    message.latexMetadata = $root.proto.AIRichResponseMessage.AIRichResponseLatexMetadata.fromObject(object.latexMetadata);
+                }
+                if (object.mapMetadata != null) {
+                    if (typeof object.mapMetadata !== "object")
+                        throw TypeError(".proto.AIRichResponseMessage.AIRichResponseSubMessage.mapMetadata: object expected");
+                    message.mapMetadata = $root.proto.AIRichResponseMessage.AIRichResponseMapMetadata.fromObject(object.mapMetadata);
+                }
+                if (object.contentItemsMetadata != null) {
+                    if (typeof object.contentItemsMetadata !== "object")
+                        throw TypeError(".proto.AIRichResponseMessage.AIRichResponseSubMessage.contentItemsMetadata: object expected");
+                    message.contentItemsMetadata = $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.fromObject(object.contentItemsMetadata);
                 }
                 return message;
             };
@@ -4338,6 +6899,21 @@ $root.proto = (function() {
                     if (options.oneofs)
                         object._dynamicMetadata = "dynamicMetadata";
                 }
+                if (message.latexMetadata != null && message.hasOwnProperty("latexMetadata")) {
+                    object.latexMetadata = $root.proto.AIRichResponseMessage.AIRichResponseLatexMetadata.toObject(message.latexMetadata, options);
+                    if (options.oneofs)
+                        object._latexMetadata = "latexMetadata";
+                }
+                if (message.mapMetadata != null && message.hasOwnProperty("mapMetadata")) {
+                    object.mapMetadata = $root.proto.AIRichResponseMessage.AIRichResponseMapMetadata.toObject(message.mapMetadata, options);
+                    if (options.oneofs)
+                        object._mapMetadata = "mapMetadata";
+                }
+                if (message.contentItemsMetadata != null && message.hasOwnProperty("contentItemsMetadata")) {
+                    object.contentItemsMetadata = $root.proto.AIRichResponseMessage.AIRichResponseContentItemsMetadata.toObject(message.contentItemsMetadata, options);
+                    if (options.oneofs)
+                        object._contentItemsMetadata = "contentItemsMetadata";
+                }
                 return object;
             };
 
@@ -4381,6 +6957,9 @@ $root.proto = (function() {
          * @property {number} AI_RICH_RESPONSE_TABLE=4 AI_RICH_RESPONSE_TABLE value
          * @property {number} AI_RICH_RESPONSE_CODE=5 AI_RICH_RESPONSE_CODE value
          * @property {number} AI_RICH_RESPONSE_DYNAMIC=6 AI_RICH_RESPONSE_DYNAMIC value
+         * @property {number} AI_RICH_RESPONSE_MAP=7 AI_RICH_RESPONSE_MAP value
+         * @property {number} AI_RICH_RESPONSE_LATEX=8 AI_RICH_RESPONSE_LATEX value
+         * @property {number} AI_RICH_RESPONSE_CONTENT_ITEMS=9 AI_RICH_RESPONSE_CONTENT_ITEMS value
          */
         AIRichResponseMessage.AIRichResponseSubMessageType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -4391,6 +6970,9 @@ $root.proto = (function() {
             values[valuesById[4] = "AI_RICH_RESPONSE_TABLE"] = 4;
             values[valuesById[5] = "AI_RICH_RESPONSE_CODE"] = 5;
             values[valuesById[6] = "AI_RICH_RESPONSE_DYNAMIC"] = 6;
+            values[valuesById[7] = "AI_RICH_RESPONSE_MAP"] = 7;
+            values[valuesById[8] = "AI_RICH_RESPONSE_LATEX"] = 8;
+            values[valuesById[9] = "AI_RICH_RESPONSE_CONTENT_ITEMS"] = 9;
             return values;
         })();
 
@@ -7452,6 +10034,7 @@ $root.proto = (function() {
                     switch (message.capabilities[i]) {
                     default:
                         return "capabilities: enum value[] expected";
+                    case 0:
                     case 1:
                     case 2:
                     case 3:
@@ -7475,6 +10058,12 @@ $root.proto = (function() {
                     case 21:
                     case 22:
                     case 23:
+                    case 24:
+                    case 25:
+                    case 26:
+                    case 27:
+                    case 28:
+                    case 29:
                         break;
                     }
             }
@@ -7504,6 +10093,10 @@ $root.proto = (function() {
                             message.capabilities[i] = object.capabilities[i];
                             break;
                         }
+                    case "UNKNOWN":
+                    case 0:
+                        message.capabilities[i] = 0;
+                        break;
                     case "PROGRESS_INDICATOR":
                     case 1:
                         message.capabilities[i] = 1;
@@ -7596,6 +10189,30 @@ $root.proto = (function() {
                     case 23:
                         message.capabilities[i] = 23;
                         break;
+                    case "RICH_RESPONSE_LATEX":
+                    case 24:
+                        message.capabilities[i] = 24;
+                        break;
+                    case "RICH_RESPONSE_MAPS":
+                    case 25:
+                        message.capabilities[i] = 25;
+                        break;
+                    case "RICH_RESPONSE_INLINE_REELS":
+                    case 26:
+                        message.capabilities[i] = 26;
+                        break;
+                    case "AGENTIC_PLANNING":
+                    case 27:
+                        message.capabilities[i] = 27;
+                        break;
+                    case "ACCOUNT_LINKING":
+                    case 28:
+                        message.capabilities[i] = 28;
+                        break;
+                    case "STREAMING_DISAGGREGATION":
+                    case 29:
+                        message.capabilities[i] = 29;
+                        break;
                     }
             }
             return message;
@@ -7654,6 +10271,7 @@ $root.proto = (function() {
          * BotCapabilityType enum.
          * @name proto.BotCapabilityMetadata.BotCapabilityType
          * @enum {number}
+         * @property {number} UNKNOWN=0 UNKNOWN value
          * @property {number} PROGRESS_INDICATOR=1 PROGRESS_INDICATOR value
          * @property {number} RICH_RESPONSE_HEADING=2 RICH_RESPONSE_HEADING value
          * @property {number} RICH_RESPONSE_NESTED_LIST=3 RICH_RESPONSE_NESTED_LIST value
@@ -7677,9 +10295,16 @@ $root.proto = (function() {
          * @property {number} RICH_RESPONSE_SUB_HEADING=21 RICH_RESPONSE_SUB_HEADING value
          * @property {number} RICH_RESPONSE_GRID_IMAGE=22 RICH_RESPONSE_GRID_IMAGE value
          * @property {number} AI_STUDIO_UGC_MEMORY=23 AI_STUDIO_UGC_MEMORY value
+         * @property {number} RICH_RESPONSE_LATEX=24 RICH_RESPONSE_LATEX value
+         * @property {number} RICH_RESPONSE_MAPS=25 RICH_RESPONSE_MAPS value
+         * @property {number} RICH_RESPONSE_INLINE_REELS=26 RICH_RESPONSE_INLINE_REELS value
+         * @property {number} AGENTIC_PLANNING=27 AGENTIC_PLANNING value
+         * @property {number} ACCOUNT_LINKING=28 ACCOUNT_LINKING value
+         * @property {number} STREAMING_DISAGGREGATION=29 STREAMING_DISAGGREGATION value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "UNKNOWN"] = 0;
             values[valuesById[1] = "PROGRESS_INDICATOR"] = 1;
             values[valuesById[2] = "RICH_RESPONSE_HEADING"] = 2;
             values[valuesById[3] = "RICH_RESPONSE_NESTED_LIST"] = 3;
@@ -7703,6 +10328,12 @@ $root.proto = (function() {
             values[valuesById[21] = "RICH_RESPONSE_SUB_HEADING"] = 21;
             values[valuesById[22] = "RICH_RESPONSE_GRID_IMAGE"] = 22;
             values[valuesById[23] = "AI_STUDIO_UGC_MEMORY"] = 23;
+            values[valuesById[24] = "RICH_RESPONSE_LATEX"] = 24;
+            values[valuesById[25] = "RICH_RESPONSE_MAPS"] = 25;
+            values[valuesById[26] = "RICH_RESPONSE_INLINE_REELS"] = 26;
+            values[valuesById[27] = "AGENTIC_PLANNING"] = 27;
+            values[valuesById[28] = "ACCOUNT_LINKING"] = 28;
+            values[valuesById[29] = "STREAMING_DISAGGREGATION"] = 29;
             return values;
         })();
 
@@ -12032,6 +14663,7 @@ $root.proto = (function() {
          * @memberof proto
          * @interface IBotProgressIndicatorMetadata
          * @property {string|null} [progressDescription] BotProgressIndicatorMetadata progressDescription
+         * @property {Array.<proto.BotProgressIndicatorMetadata.IBotPlanningStepMetadata>|null} [stepsMetadata] BotProgressIndicatorMetadata stepsMetadata
          */
 
         /**
@@ -12043,6 +14675,7 @@ $root.proto = (function() {
          * @param {proto.IBotProgressIndicatorMetadata=} [properties] Properties to set
          */
         function BotProgressIndicatorMetadata(properties) {
+            this.stepsMetadata = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -12056,6 +14689,14 @@ $root.proto = (function() {
          * @instance
          */
         BotProgressIndicatorMetadata.prototype.progressDescription = null;
+
+        /**
+         * BotProgressIndicatorMetadata stepsMetadata.
+         * @member {Array.<proto.BotProgressIndicatorMetadata.IBotPlanningStepMetadata>} stepsMetadata
+         * @memberof proto.BotProgressIndicatorMetadata
+         * @instance
+         */
+        BotProgressIndicatorMetadata.prototype.stepsMetadata = $util.emptyArray;
 
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
@@ -12092,6 +14733,9 @@ $root.proto = (function() {
                 writer = $Writer.create();
             if (message.progressDescription != null && Object.hasOwnProperty.call(message, "progressDescription"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.progressDescription);
+            if (message.stepsMetadata != null && message.stepsMetadata.length)
+                for (var i = 0; i < message.stepsMetadata.length; ++i)
+                    $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.encode(message.stepsMetadata[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             return writer;
         };
 
@@ -12128,6 +14772,12 @@ $root.proto = (function() {
                 switch (tag >>> 3) {
                 case 1: {
                         message.progressDescription = reader.string();
+                        break;
+                    }
+                case 2: {
+                        if (!(message.stepsMetadata && message.stepsMetadata.length))
+                            message.stepsMetadata = [];
+                        message.stepsMetadata.push($root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.decode(reader, reader.uint32()));
                         break;
                     }
                 default:
@@ -12171,6 +14821,15 @@ $root.proto = (function() {
                 if (!$util.isString(message.progressDescription))
                     return "progressDescription: string expected";
             }
+            if (message.stepsMetadata != null && message.hasOwnProperty("stepsMetadata")) {
+                if (!Array.isArray(message.stepsMetadata))
+                    return "stepsMetadata: array expected";
+                for (var i = 0; i < message.stepsMetadata.length; ++i) {
+                    var error = $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.verify(message.stepsMetadata[i]);
+                    if (error)
+                        return "stepsMetadata." + error;
+                }
+            }
             return null;
         };
 
@@ -12188,6 +14847,16 @@ $root.proto = (function() {
             var message = new $root.proto.BotProgressIndicatorMetadata();
             if (object.progressDescription != null)
                 message.progressDescription = String(object.progressDescription);
+            if (object.stepsMetadata) {
+                if (!Array.isArray(object.stepsMetadata))
+                    throw TypeError(".proto.BotProgressIndicatorMetadata.stepsMetadata: array expected");
+                message.stepsMetadata = [];
+                for (var i = 0; i < object.stepsMetadata.length; ++i) {
+                    if (typeof object.stepsMetadata[i] !== "object")
+                        throw TypeError(".proto.BotProgressIndicatorMetadata.stepsMetadata: object expected");
+                    message.stepsMetadata[i] = $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.fromObject(object.stepsMetadata[i]);
+                }
+            }
             return message;
         };
 
@@ -12204,10 +14873,17 @@ $root.proto = (function() {
             if (!options)
                 options = {};
             var object = {};
+            if (options.arrays || options.defaults)
+                object.stepsMetadata = [];
             if (message.progressDescription != null && message.hasOwnProperty("progressDescription")) {
                 object.progressDescription = message.progressDescription;
                 if (options.oneofs)
                     object._progressDescription = "progressDescription";
+            }
+            if (message.stepsMetadata && message.stepsMetadata.length) {
+                object.stepsMetadata = [];
+                for (var j = 0; j < message.stepsMetadata.length; ++j)
+                    object.stepsMetadata[j] = $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.toObject(message.stepsMetadata[j], options);
             }
             return object;
         };
@@ -12237,6 +14913,775 @@ $root.proto = (function() {
             }
             return typeUrlPrefix + "/proto.BotProgressIndicatorMetadata";
         };
+
+        BotProgressIndicatorMetadata.BotPlanningStepMetadata = (function() {
+
+            /**
+             * Properties of a BotPlanningStepMetadata.
+             * @memberof proto.BotProgressIndicatorMetadata
+             * @interface IBotPlanningStepMetadata
+             * @property {string|null} [statusTitle] BotPlanningStepMetadata statusTitle
+             * @property {string|null} [statusBody] BotPlanningStepMetadata statusBody
+             * @property {Array.<proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata>|null} [sourcesMetadata] BotPlanningStepMetadata sourcesMetadata
+             * @property {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus|null} [status] BotPlanningStepMetadata status
+             * @property {boolean|null} [isReasoning] BotPlanningStepMetadata isReasoning
+             * @property {boolean|null} [isEnhancedSearch] BotPlanningStepMetadata isEnhancedSearch
+             */
+
+            /**
+             * Constructs a new BotPlanningStepMetadata.
+             * @memberof proto.BotProgressIndicatorMetadata
+             * @classdesc Represents a BotPlanningStepMetadata.
+             * @implements IBotPlanningStepMetadata
+             * @constructor
+             * @param {proto.BotProgressIndicatorMetadata.IBotPlanningStepMetadata=} [properties] Properties to set
+             */
+            function BotPlanningStepMetadata(properties) {
+                this.sourcesMetadata = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * BotPlanningStepMetadata statusTitle.
+             * @member {string|null|undefined} statusTitle
+             * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @instance
+             */
+            BotPlanningStepMetadata.prototype.statusTitle = null;
+
+            /**
+             * BotPlanningStepMetadata statusBody.
+             * @member {string|null|undefined} statusBody
+             * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @instance
+             */
+            BotPlanningStepMetadata.prototype.statusBody = null;
+
+            /**
+             * BotPlanningStepMetadata sourcesMetadata.
+             * @member {Array.<proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata>} sourcesMetadata
+             * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @instance
+             */
+            BotPlanningStepMetadata.prototype.sourcesMetadata = $util.emptyArray;
+
+            /**
+             * BotPlanningStepMetadata status.
+             * @member {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus|null|undefined} status
+             * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @instance
+             */
+            BotPlanningStepMetadata.prototype.status = null;
+
+            /**
+             * BotPlanningStepMetadata isReasoning.
+             * @member {boolean|null|undefined} isReasoning
+             * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @instance
+             */
+            BotPlanningStepMetadata.prototype.isReasoning = null;
+
+            /**
+             * BotPlanningStepMetadata isEnhancedSearch.
+             * @member {boolean|null|undefined} isEnhancedSearch
+             * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @instance
+             */
+            BotPlanningStepMetadata.prototype.isEnhancedSearch = null;
+
+            // OneOf field names bound to virtual getters and setters
+            var $oneOfFields;
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(BotPlanningStepMetadata.prototype, "_statusTitle", {
+                get: $util.oneOfGetter($oneOfFields = ["statusTitle"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(BotPlanningStepMetadata.prototype, "_statusBody", {
+                get: $util.oneOfGetter($oneOfFields = ["statusBody"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(BotPlanningStepMetadata.prototype, "_status", {
+                get: $util.oneOfGetter($oneOfFields = ["status"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(BotPlanningStepMetadata.prototype, "_isReasoning", {
+                get: $util.oneOfGetter($oneOfFields = ["isReasoning"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(BotPlanningStepMetadata.prototype, "_isEnhancedSearch", {
+                get: $util.oneOfGetter($oneOfFields = ["isEnhancedSearch"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            /**
+             * Creates a new BotPlanningStepMetadata instance using the specified properties.
+             * @function create
+             * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {proto.BotProgressIndicatorMetadata.IBotPlanningStepMetadata=} [properties] Properties to set
+             * @returns {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata} BotPlanningStepMetadata instance
+             */
+            BotPlanningStepMetadata.create = function create(properties) {
+                return new BotPlanningStepMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified BotPlanningStepMetadata message. Does not implicitly {@link proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {proto.BotProgressIndicatorMetadata.IBotPlanningStepMetadata} message BotPlanningStepMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BotPlanningStepMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.statusTitle != null && Object.hasOwnProperty.call(message, "statusTitle"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.statusTitle);
+                if (message.statusBody != null && Object.hasOwnProperty.call(message, "statusBody"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.statusBody);
+                if (message.sourcesMetadata != null && message.sourcesMetadata.length)
+                    for (var i = 0; i < message.sourcesMetadata.length; ++i)
+                        $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.encode(message.sourcesMetadata[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).int32(message.status);
+                if (message.isReasoning != null && Object.hasOwnProperty.call(message, "isReasoning"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).bool(message.isReasoning);
+                if (message.isEnhancedSearch != null && Object.hasOwnProperty.call(message, "isEnhancedSearch"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).bool(message.isEnhancedSearch);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified BotPlanningStepMetadata message, length delimited. Does not implicitly {@link proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {proto.BotProgressIndicatorMetadata.IBotPlanningStepMetadata} message BotPlanningStepMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BotPlanningStepMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a BotPlanningStepMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata} BotPlanningStepMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BotPlanningStepMetadata.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.statusTitle = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.statusBody = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            if (!(message.sourcesMetadata && message.sourcesMetadata.length))
+                                message.sourcesMetadata = [];
+                            message.sourcesMetadata.push($root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 4: {
+                            message.status = reader.int32();
+                            break;
+                        }
+                    case 5: {
+                            message.isReasoning = reader.bool();
+                            break;
+                        }
+                    case 6: {
+                            message.isEnhancedSearch = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a BotPlanningStepMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata} BotPlanningStepMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BotPlanningStepMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a BotPlanningStepMetadata message.
+             * @function verify
+             * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            BotPlanningStepMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                var properties = {};
+                if (message.statusTitle != null && message.hasOwnProperty("statusTitle")) {
+                    properties._statusTitle = 1;
+                    if (!$util.isString(message.statusTitle))
+                        return "statusTitle: string expected";
+                }
+                if (message.statusBody != null && message.hasOwnProperty("statusBody")) {
+                    properties._statusBody = 1;
+                    if (!$util.isString(message.statusBody))
+                        return "statusBody: string expected";
+                }
+                if (message.sourcesMetadata != null && message.hasOwnProperty("sourcesMetadata")) {
+                    if (!Array.isArray(message.sourcesMetadata))
+                        return "sourcesMetadata: array expected";
+                    for (var i = 0; i < message.sourcesMetadata.length; ++i) {
+                        var error = $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.verify(message.sourcesMetadata[i]);
+                        if (error)
+                            return "sourcesMetadata." + error;
+                    }
+                }
+                if (message.status != null && message.hasOwnProperty("status")) {
+                    properties._status = 1;
+                    switch (message.status) {
+                    default:
+                        return "status: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        break;
+                    }
+                }
+                if (message.isReasoning != null && message.hasOwnProperty("isReasoning")) {
+                    properties._isReasoning = 1;
+                    if (typeof message.isReasoning !== "boolean")
+                        return "isReasoning: boolean expected";
+                }
+                if (message.isEnhancedSearch != null && message.hasOwnProperty("isEnhancedSearch")) {
+                    properties._isEnhancedSearch = 1;
+                    if (typeof message.isEnhancedSearch !== "boolean")
+                        return "isEnhancedSearch: boolean expected";
+                }
+                return null;
+            };
+
+            /**
+             * Creates a BotPlanningStepMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata} BotPlanningStepMetadata
+             */
+            BotPlanningStepMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata)
+                    return object;
+                var message = new $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata();
+                if (object.statusTitle != null)
+                    message.statusTitle = String(object.statusTitle);
+                if (object.statusBody != null)
+                    message.statusBody = String(object.statusBody);
+                if (object.sourcesMetadata) {
+                    if (!Array.isArray(object.sourcesMetadata))
+                        throw TypeError(".proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sourcesMetadata: array expected");
+                    message.sourcesMetadata = [];
+                    for (var i = 0; i < object.sourcesMetadata.length; ++i) {
+                        if (typeof object.sourcesMetadata[i] !== "object")
+                            throw TypeError(".proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sourcesMetadata: object expected");
+                        message.sourcesMetadata[i] = $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.fromObject(object.sourcesMetadata[i]);
+                    }
+                }
+                switch (object.status) {
+                default:
+                    if (typeof object.status === "number") {
+                        message.status = object.status;
+                        break;
+                    }
+                    break;
+                case "UNKNOWN":
+                case 0:
+                    message.status = 0;
+                    break;
+                case "PLANNED":
+                case 1:
+                    message.status = 1;
+                    break;
+                case "EXECUTING":
+                case 2:
+                    message.status = 2;
+                    break;
+                case "FINISHED":
+                case 3:
+                    message.status = 3;
+                    break;
+                }
+                if (object.isReasoning != null)
+                    message.isReasoning = Boolean(object.isReasoning);
+                if (object.isEnhancedSearch != null)
+                    message.isEnhancedSearch = Boolean(object.isEnhancedSearch);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a BotPlanningStepMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata} message BotPlanningStepMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            BotPlanningStepMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.sourcesMetadata = [];
+                if (message.statusTitle != null && message.hasOwnProperty("statusTitle")) {
+                    object.statusTitle = message.statusTitle;
+                    if (options.oneofs)
+                        object._statusTitle = "statusTitle";
+                }
+                if (message.statusBody != null && message.hasOwnProperty("statusBody")) {
+                    object.statusBody = message.statusBody;
+                    if (options.oneofs)
+                        object._statusBody = "statusBody";
+                }
+                if (message.sourcesMetadata && message.sourcesMetadata.length) {
+                    object.sourcesMetadata = [];
+                    for (var j = 0; j < message.sourcesMetadata.length; ++j)
+                        object.sourcesMetadata[j] = $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.toObject(message.sourcesMetadata[j], options);
+                }
+                if (message.status != null && message.hasOwnProperty("status")) {
+                    object.status = options.enums === String ? $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus[message.status] === undefined ? message.status : $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus[message.status] : message.status;
+                    if (options.oneofs)
+                        object._status = "status";
+                }
+                if (message.isReasoning != null && message.hasOwnProperty("isReasoning")) {
+                    object.isReasoning = message.isReasoning;
+                    if (options.oneofs)
+                        object._isReasoning = "isReasoning";
+                }
+                if (message.isEnhancedSearch != null && message.hasOwnProperty("isEnhancedSearch")) {
+                    object.isEnhancedSearch = message.isEnhancedSearch;
+                    if (options.oneofs)
+                        object._isEnhancedSearch = "isEnhancedSearch";
+                }
+                return object;
+            };
+
+            /**
+             * Converts this BotPlanningStepMetadata to JSON.
+             * @function toJSON
+             * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            BotPlanningStepMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for BotPlanningStepMetadata
+             * @function getTypeUrl
+             * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            BotPlanningStepMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata";
+            };
+
+            BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata = (function() {
+
+                /**
+                 * Properties of a BotPlanningSearchSourcesMetadata.
+                 * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+                 * @interface IBotPlanningSearchSourcesMetadata
+                 * @property {string|null} [sourceTitle] BotPlanningSearchSourcesMetadata sourceTitle
+                 * @property {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider|null} [provider] BotPlanningSearchSourcesMetadata provider
+                 * @property {string|null} [sourceUrl] BotPlanningSearchSourcesMetadata sourceUrl
+                 */
+
+                /**
+                 * Constructs a new BotPlanningSearchSourcesMetadata.
+                 * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+                 * @classdesc Represents a BotPlanningSearchSourcesMetadata.
+                 * @implements IBotPlanningSearchSourcesMetadata
+                 * @constructor
+                 * @param {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata=} [properties] Properties to set
+                 */
+                function BotPlanningSearchSourcesMetadata(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * BotPlanningSearchSourcesMetadata sourceTitle.
+                 * @member {string|null|undefined} sourceTitle
+                 * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @instance
+                 */
+                BotPlanningSearchSourcesMetadata.prototype.sourceTitle = null;
+
+                /**
+                 * BotPlanningSearchSourcesMetadata provider.
+                 * @member {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider|null|undefined} provider
+                 * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @instance
+                 */
+                BotPlanningSearchSourcesMetadata.prototype.provider = null;
+
+                /**
+                 * BotPlanningSearchSourcesMetadata sourceUrl.
+                 * @member {string|null|undefined} sourceUrl
+                 * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @instance
+                 */
+                BotPlanningSearchSourcesMetadata.prototype.sourceUrl = null;
+
+                // OneOf field names bound to virtual getters and setters
+                var $oneOfFields;
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(BotPlanningSearchSourcesMetadata.prototype, "_sourceTitle", {
+                    get: $util.oneOfGetter($oneOfFields = ["sourceTitle"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(BotPlanningSearchSourcesMetadata.prototype, "_provider", {
+                    get: $util.oneOfGetter($oneOfFields = ["provider"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                // Virtual OneOf for proto3 optional field
+                Object.defineProperty(BotPlanningSearchSourcesMetadata.prototype, "_sourceUrl", {
+                    get: $util.oneOfGetter($oneOfFields = ["sourceUrl"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                /**
+                 * Creates a new BotPlanningSearchSourcesMetadata instance using the specified properties.
+                 * @function create
+                 * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata=} [properties] Properties to set
+                 * @returns {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata} BotPlanningSearchSourcesMetadata instance
+                 */
+                BotPlanningSearchSourcesMetadata.create = function create(properties) {
+                    return new BotPlanningSearchSourcesMetadata(properties);
+                };
+
+                /**
+                 * Encodes the specified BotPlanningSearchSourcesMetadata message. Does not implicitly {@link proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.verify|verify} messages.
+                 * @function encode
+                 * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata} message BotPlanningSearchSourcesMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                BotPlanningSearchSourcesMetadata.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.sourceTitle != null && Object.hasOwnProperty.call(message, "sourceTitle"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.sourceTitle);
+                    if (message.provider != null && Object.hasOwnProperty.call(message, "provider"))
+                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.provider);
+                    if (message.sourceUrl != null && Object.hasOwnProperty.call(message, "sourceUrl"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.sourceUrl);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified BotPlanningSearchSourcesMetadata message, length delimited. Does not implicitly {@link proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata} message BotPlanningSearchSourcesMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                BotPlanningSearchSourcesMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a BotPlanningSearchSourcesMetadata message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata} BotPlanningSearchSourcesMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                BotPlanningSearchSourcesMetadata.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.sourceTitle = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.provider = reader.int32();
+                                break;
+                            }
+                        case 3: {
+                                message.sourceUrl = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a BotPlanningSearchSourcesMetadata message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata} BotPlanningSearchSourcesMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                BotPlanningSearchSourcesMetadata.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a BotPlanningSearchSourcesMetadata message.
+                 * @function verify
+                 * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                BotPlanningSearchSourcesMetadata.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    var properties = {};
+                    if (message.sourceTitle != null && message.hasOwnProperty("sourceTitle")) {
+                        properties._sourceTitle = 1;
+                        if (!$util.isString(message.sourceTitle))
+                            return "sourceTitle: string expected";
+                    }
+                    if (message.provider != null && message.hasOwnProperty("provider")) {
+                        properties._provider = 1;
+                        switch (message.provider) {
+                        default:
+                            return "provider: enum value expected";
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                            break;
+                        }
+                    }
+                    if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl")) {
+                        properties._sourceUrl = 1;
+                        if (!$util.isString(message.sourceUrl))
+                            return "sourceUrl: string expected";
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates a BotPlanningSearchSourcesMetadata message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata} BotPlanningSearchSourcesMetadata
+                 */
+                BotPlanningSearchSourcesMetadata.fromObject = function fromObject(object) {
+                    if (object instanceof $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata)
+                        return object;
+                    var message = new $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata();
+                    if (object.sourceTitle != null)
+                        message.sourceTitle = String(object.sourceTitle);
+                    switch (object.provider) {
+                    default:
+                        if (typeof object.provider === "number") {
+                            message.provider = object.provider;
+                            break;
+                        }
+                        break;
+                    case "UNKNOWN":
+                    case 0:
+                        message.provider = 0;
+                        break;
+                    case "OTHER":
+                    case 1:
+                        message.provider = 1;
+                        break;
+                    case "GOOGLE":
+                    case 2:
+                        message.provider = 2;
+                        break;
+                    case "BING":
+                    case 3:
+                        message.provider = 3;
+                        break;
+                    }
+                    if (object.sourceUrl != null)
+                        message.sourceUrl = String(object.sourceUrl);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a BotPlanningSearchSourcesMetadata message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata} message BotPlanningSearchSourcesMetadata
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                BotPlanningSearchSourcesMetadata.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (message.sourceTitle != null && message.hasOwnProperty("sourceTitle")) {
+                        object.sourceTitle = message.sourceTitle;
+                        if (options.oneofs)
+                            object._sourceTitle = "sourceTitle";
+                    }
+                    if (message.provider != null && message.hasOwnProperty("provider")) {
+                        object.provider = options.enums === String ? $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider[message.provider] === undefined ? message.provider : $root.proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider[message.provider] : message.provider;
+                        if (options.oneofs)
+                            object._provider = "provider";
+                    }
+                    if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl")) {
+                        object.sourceUrl = message.sourceUrl;
+                        if (options.oneofs)
+                            object._sourceUrl = "sourceUrl";
+                    }
+                    return object;
+                };
+
+                /**
+                 * Converts this BotPlanningSearchSourcesMetadata to JSON.
+                 * @function toJSON
+                 * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                BotPlanningSearchSourcesMetadata.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for BotPlanningSearchSourcesMetadata
+                 * @function getTypeUrl
+                 * @memberof proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                BotPlanningSearchSourcesMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata";
+                };
+
+                /**
+                 * BotPlanningSearchSourceProvider enum.
+                 * @name proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider
+                 * @enum {number}
+                 * @property {number} UNKNOWN=0 UNKNOWN value
+                 * @property {number} OTHER=1 OTHER value
+                 * @property {number} GOOGLE=2 GOOGLE value
+                 * @property {number} BING=3 BING value
+                 */
+                BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider = (function() {
+                    var valuesById = {}, values = Object.create(valuesById);
+                    values[valuesById[0] = "UNKNOWN"] = 0;
+                    values[valuesById[1] = "OTHER"] = 1;
+                    values[valuesById[2] = "GOOGLE"] = 2;
+                    values[valuesById[3] = "BING"] = 3;
+                    return values;
+                })();
+
+                return BotPlanningSearchSourcesMetadata;
+            })();
+
+            /**
+             * PlanningStepStatus enum.
+             * @name proto.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus
+             * @enum {number}
+             * @property {number} UNKNOWN=0 UNKNOWN value
+             * @property {number} PLANNED=1 PLANNED value
+             * @property {number} EXECUTING=2 EXECUTING value
+             * @property {number} FINISHED=3 FINISHED value
+             */
+            BotPlanningStepMetadata.PlanningStepStatus = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "UNKNOWN"] = 0;
+                values[valuesById[1] = "PLANNED"] = 1;
+                values[valuesById[2] = "EXECUTING"] = 2;
+                values[valuesById[3] = "FINISHED"] = 3;
+                return values;
+            })();
+
+            return BotPlanningStepMetadata;
+        })();
 
         return BotProgressIndicatorMetadata;
     })();
@@ -24870,6 +28315,8 @@ $root.proto = (function() {
          * @property {proto.ContextInfo.IForwardedAIBotMessageInfo|null} [forwardedAiBotMessageInfo] ContextInfo forwardedAiBotMessageInfo
          * @property {proto.ContextInfo.StatusAttributionType|null} [statusAttributionType] ContextInfo statusAttributionType
          * @property {proto.IUrlTrackingMap|null} [urlTrackingMap] ContextInfo urlTrackingMap
+         * @property {proto.ContextInfo.PairedMediaType|null} [pairedMediaType] ContextInfo pairedMediaType
+         * @property {number|null} [rankingVersion] ContextInfo rankingVersion
          */
 
         /**
@@ -25225,6 +28672,22 @@ $root.proto = (function() {
          */
         ContextInfo.prototype.urlTrackingMap = null;
 
+        /**
+         * ContextInfo pairedMediaType.
+         * @member {proto.ContextInfo.PairedMediaType|null|undefined} pairedMediaType
+         * @memberof proto.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.pairedMediaType = null;
+
+        /**
+         * ContextInfo rankingVersion.
+         * @member {number|null|undefined} rankingVersion
+         * @memberof proto.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.rankingVersion = null;
+
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
@@ -25468,6 +28931,18 @@ $root.proto = (function() {
             set: $util.oneOfSetter($oneOfFields)
         });
 
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(ContextInfo.prototype, "_pairedMediaType", {
+            get: $util.oneOfGetter($oneOfFields = ["pairedMediaType"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(ContextInfo.prototype, "_rankingVersion", {
+            get: $util.oneOfGetter($oneOfFields = ["rankingVersion"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
         /**
          * Creates a new ContextInfo instance using the specified properties.
          * @function create
@@ -25578,6 +29053,10 @@ $root.proto = (function() {
                 writer.uint32(/* id 57, wireType 0 =*/456).int32(message.statusAttributionType);
             if (message.urlTrackingMap != null && Object.hasOwnProperty.call(message, "urlTrackingMap"))
                 $root.proto.UrlTrackingMap.encode(message.urlTrackingMap, writer.uint32(/* id 58, wireType 2 =*/466).fork()).ldelim();
+            if (message.pairedMediaType != null && Object.hasOwnProperty.call(message, "pairedMediaType"))
+                writer.uint32(/* id 59, wireType 0 =*/472).int32(message.pairedMediaType);
+            if (message.rankingVersion != null && Object.hasOwnProperty.call(message, "rankingVersion"))
+                writer.uint32(/* id 60, wireType 0 =*/480).uint32(message.rankingVersion);
             return writer;
         };
 
@@ -25782,6 +29261,14 @@ $root.proto = (function() {
                     }
                 case 58: {
                         message.urlTrackingMap = $root.proto.UrlTrackingMap.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 59: {
+                        message.pairedMediaType = reader.int32();
+                        break;
+                    }
+                case 60: {
+                        message.rankingVersion = reader.uint32();
                         break;
                     }
                 default:
@@ -26081,6 +29568,24 @@ $root.proto = (function() {
                         return "urlTrackingMap." + error;
                 }
             }
+            if (message.pairedMediaType != null && message.hasOwnProperty("pairedMediaType")) {
+                properties._pairedMediaType = 1;
+                switch (message.pairedMediaType) {
+                default:
+                    return "pairedMediaType: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    break;
+                }
+            }
+            if (message.rankingVersion != null && message.hasOwnProperty("rankingVersion")) {
+                properties._rankingVersion = 1;
+                if (!$util.isInteger(message.rankingVersion))
+                    return "rankingVersion: integer expected";
+            }
             return null;
         };
 
@@ -26266,6 +29771,36 @@ $root.proto = (function() {
                     throw TypeError(".proto.ContextInfo.urlTrackingMap: object expected");
                 message.urlTrackingMap = $root.proto.UrlTrackingMap.fromObject(object.urlTrackingMap);
             }
+            switch (object.pairedMediaType) {
+            default:
+                if (typeof object.pairedMediaType === "number") {
+                    message.pairedMediaType = object.pairedMediaType;
+                    break;
+                }
+                break;
+            case "NOT_PAIRED_MEDIA":
+            case 0:
+                message.pairedMediaType = 0;
+                break;
+            case "SD_VIDEO_PARENT":
+            case 1:
+                message.pairedMediaType = 1;
+                break;
+            case "HD_VIDEO_CHILD":
+            case 2:
+                message.pairedMediaType = 2;
+                break;
+            case "SD_IMAGE_PARENT":
+            case 3:
+                message.pairedMediaType = 3;
+                break;
+            case "HD_IMAGE_CHILD":
+            case 4:
+                message.pairedMediaType = 4;
+                break;
+            }
+            if (object.rankingVersion != null)
+                message.rankingVersion = object.rankingVersion >>> 0;
             return message;
         };
 
@@ -26498,6 +30033,16 @@ $root.proto = (function() {
                 object.urlTrackingMap = $root.proto.UrlTrackingMap.toObject(message.urlTrackingMap, options);
                 if (options.oneofs)
                     object._urlTrackingMap = "urlTrackingMap";
+            }
+            if (message.pairedMediaType != null && message.hasOwnProperty("pairedMediaType")) {
+                object.pairedMediaType = options.enums === String ? $root.proto.ContextInfo.PairedMediaType[message.pairedMediaType] === undefined ? message.pairedMediaType : $root.proto.ContextInfo.PairedMediaType[message.pairedMediaType] : message.pairedMediaType;
+                if (options.oneofs)
+                    object._pairedMediaType = "pairedMediaType";
+            }
+            if (message.rankingVersion != null && message.hasOwnProperty("rankingVersion")) {
+                object.rankingVersion = message.rankingVersion;
+                if (options.oneofs)
+                    object._rankingVersion = "rankingVersion";
             }
             return object;
         };
@@ -29698,6 +33243,26 @@ $root.proto = (function() {
         })();
 
         /**
+         * PairedMediaType enum.
+         * @name proto.ContextInfo.PairedMediaType
+         * @enum {number}
+         * @property {number} NOT_PAIRED_MEDIA=0 NOT_PAIRED_MEDIA value
+         * @property {number} SD_VIDEO_PARENT=1 SD_VIDEO_PARENT value
+         * @property {number} HD_VIDEO_CHILD=2 HD_VIDEO_CHILD value
+         * @property {number} SD_IMAGE_PARENT=3 SD_IMAGE_PARENT value
+         * @property {number} HD_IMAGE_CHILD=4 HD_IMAGE_CHILD value
+         */
+        ContextInfo.PairedMediaType = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "NOT_PAIRED_MEDIA"] = 0;
+            values[valuesById[1] = "SD_VIDEO_PARENT"] = 1;
+            values[valuesById[2] = "HD_VIDEO_CHILD"] = 2;
+            values[valuesById[3] = "SD_IMAGE_PARENT"] = 3;
+            values[valuesById[4] = "HD_IMAGE_CHILD"] = 4;
+            return values;
+        })();
+
+        /**
          * StatusAttributionType enum.
          * @name proto.ContextInfo.StatusAttributionType
          * @enum {number}
@@ -30020,6 +33585,7 @@ $root.proto = (function() {
          * @property {proto.PrivacySystemMessage|null} [systemMessageToInsert] Conversation systemMessageToInsert
          * @property {boolean|null} [capiCreatedGroup] Conversation capiCreatedGroup
          * @property {string|null} [accountLid] Conversation accountLid
+         * @property {boolean|null} [limitSharing] Conversation limitSharing
          */
 
         /**
@@ -30431,6 +33997,14 @@ $root.proto = (function() {
          */
         Conversation.prototype.accountLid = null;
 
+        /**
+         * Conversation limitSharing.
+         * @member {boolean|null|undefined} limitSharing
+         * @memberof proto.Conversation
+         * @instance
+         */
+        Conversation.prototype.limitSharing = null;
+
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
@@ -30710,6 +34284,12 @@ $root.proto = (function() {
             set: $util.oneOfSetter($oneOfFields)
         });
 
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(Conversation.prototype, "_limitSharing", {
+            get: $util.oneOfGetter($oneOfFields = ["limitSharing"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
         /**
          * Creates a new Conversation instance using the specified properties.
          * @function create
@@ -30833,6 +34413,8 @@ $root.proto = (function() {
                 writer.uint32(/* id 48, wireType 0 =*/384).bool(message.capiCreatedGroup);
             if (message.accountLid != null && Object.hasOwnProperty.call(message, "accountLid"))
                 writer.uint32(/* id 49, wireType 2 =*/394).string(message.accountLid);
+            if (message.limitSharing != null && Object.hasOwnProperty.call(message, "limitSharing"))
+                writer.uint32(/* id 50, wireType 0 =*/400).bool(message.limitSharing);
             return writer;
         };
 
@@ -31065,6 +34647,10 @@ $root.proto = (function() {
                     }
                 case 49: {
                         message.accountLid = reader.string();
+                        break;
+                    }
+                case 50: {
+                        message.limitSharing = reader.bool();
                         break;
                     }
                 default:
@@ -31379,6 +34965,11 @@ $root.proto = (function() {
                 if (!$util.isString(message.accountLid))
                     return "accountLid: string expected";
             }
+            if (message.limitSharing != null && message.hasOwnProperty("limitSharing")) {
+                properties._limitSharing = 1;
+                if (typeof message.limitSharing !== "boolean")
+                    return "limitSharing: boolean expected";
+            }
             return null;
         };
 
@@ -31623,6 +35214,8 @@ $root.proto = (function() {
                 message.capiCreatedGroup = Boolean(object.capiCreatedGroup);
             if (object.accountLid != null)
                 message.accountLid = String(object.accountLid);
+            if (object.limitSharing != null)
+                message.limitSharing = Boolean(object.limitSharing);
             return message;
         };
 
@@ -31908,6 +35501,11 @@ $root.proto = (function() {
                 if (options.oneofs)
                     object._accountLid = "accountLid";
             }
+            if (message.limitSharing != null && message.hasOwnProperty("limitSharing")) {
+                object.limitSharing = message.limitSharing;
+                if (options.oneofs)
+                    object._limitSharing = "limitSharing";
+            }
             return object;
         };
 
@@ -31963,6 +35561,7 @@ $root.proto = (function() {
          * @memberof proto
          * @interface IDeviceCapabilities
          * @property {proto.DeviceCapabilities.ChatLockSupportLevel|null} [chatLockSupportLevel] DeviceCapabilities chatLockSupportLevel
+         * @property {proto.DeviceCapabilities.ILIDMigration|null} [lidMigration] DeviceCapabilities lidMigration
          */
 
         /**
@@ -31988,12 +35587,26 @@ $root.proto = (function() {
          */
         DeviceCapabilities.prototype.chatLockSupportLevel = null;
 
+        /**
+         * DeviceCapabilities lidMigration.
+         * @member {proto.DeviceCapabilities.ILIDMigration|null|undefined} lidMigration
+         * @memberof proto.DeviceCapabilities
+         * @instance
+         */
+        DeviceCapabilities.prototype.lidMigration = null;
+
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
         // Virtual OneOf for proto3 optional field
         Object.defineProperty(DeviceCapabilities.prototype, "_chatLockSupportLevel", {
             get: $util.oneOfGetter($oneOfFields = ["chatLockSupportLevel"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(DeviceCapabilities.prototype, "_lidMigration", {
+            get: $util.oneOfGetter($oneOfFields = ["lidMigration"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
@@ -32023,6 +35636,8 @@ $root.proto = (function() {
                 writer = $Writer.create();
             if (message.chatLockSupportLevel != null && Object.hasOwnProperty.call(message, "chatLockSupportLevel"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.chatLockSupportLevel);
+            if (message.lidMigration != null && Object.hasOwnProperty.call(message, "lidMigration"))
+                $root.proto.DeviceCapabilities.LIDMigration.encode(message.lidMigration, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             return writer;
         };
 
@@ -32059,6 +35674,10 @@ $root.proto = (function() {
                 switch (tag >>> 3) {
                 case 1: {
                         message.chatLockSupportLevel = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.lidMigration = $root.proto.DeviceCapabilities.LIDMigration.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -32108,6 +35727,14 @@ $root.proto = (function() {
                     break;
                 }
             }
+            if (message.lidMigration != null && message.hasOwnProperty("lidMigration")) {
+                properties._lidMigration = 1;
+                {
+                    var error = $root.proto.DeviceCapabilities.LIDMigration.verify(message.lidMigration);
+                    if (error)
+                        return "lidMigration." + error;
+                }
+            }
             return null;
         };
 
@@ -32143,6 +35770,11 @@ $root.proto = (function() {
                 message.chatLockSupportLevel = 2;
                 break;
             }
+            if (object.lidMigration != null) {
+                if (typeof object.lidMigration !== "object")
+                    throw TypeError(".proto.DeviceCapabilities.lidMigration: object expected");
+                message.lidMigration = $root.proto.DeviceCapabilities.LIDMigration.fromObject(object.lidMigration);
+            }
             return message;
         };
 
@@ -32163,6 +35795,11 @@ $root.proto = (function() {
                 object.chatLockSupportLevel = options.enums === String ? $root.proto.DeviceCapabilities.ChatLockSupportLevel[message.chatLockSupportLevel] === undefined ? message.chatLockSupportLevel : $root.proto.DeviceCapabilities.ChatLockSupportLevel[message.chatLockSupportLevel] : message.chatLockSupportLevel;
                 if (options.oneofs)
                     object._chatLockSupportLevel = "chatLockSupportLevel";
+            }
+            if (message.lidMigration != null && message.hasOwnProperty("lidMigration")) {
+                object.lidMigration = $root.proto.DeviceCapabilities.LIDMigration.toObject(message.lidMigration, options);
+                if (options.oneofs)
+                    object._lidMigration = "lidMigration";
             }
             return object;
         };
@@ -32207,6 +35844,232 @@ $root.proto = (function() {
             values[valuesById[1] = "MINIMAL"] = 1;
             values[valuesById[2] = "FULL"] = 2;
             return values;
+        })();
+
+        DeviceCapabilities.LIDMigration = (function() {
+
+            /**
+             * Properties of a LIDMigration.
+             * @memberof proto.DeviceCapabilities
+             * @interface ILIDMigration
+             * @property {number|Long|null} [chatDbMigrationTimestamp] LIDMigration chatDbMigrationTimestamp
+             */
+
+            /**
+             * Constructs a new LIDMigration.
+             * @memberof proto.DeviceCapabilities
+             * @classdesc Represents a LIDMigration.
+             * @implements ILIDMigration
+             * @constructor
+             * @param {proto.DeviceCapabilities.ILIDMigration=} [properties] Properties to set
+             */
+            function LIDMigration(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * LIDMigration chatDbMigrationTimestamp.
+             * @member {number|Long|null|undefined} chatDbMigrationTimestamp
+             * @memberof proto.DeviceCapabilities.LIDMigration
+             * @instance
+             */
+            LIDMigration.prototype.chatDbMigrationTimestamp = null;
+
+            // OneOf field names bound to virtual getters and setters
+            var $oneOfFields;
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(LIDMigration.prototype, "_chatDbMigrationTimestamp", {
+                get: $util.oneOfGetter($oneOfFields = ["chatDbMigrationTimestamp"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            /**
+             * Creates a new LIDMigration instance using the specified properties.
+             * @function create
+             * @memberof proto.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {proto.DeviceCapabilities.ILIDMigration=} [properties] Properties to set
+             * @returns {proto.DeviceCapabilities.LIDMigration} LIDMigration instance
+             */
+            LIDMigration.create = function create(properties) {
+                return new LIDMigration(properties);
+            };
+
+            /**
+             * Encodes the specified LIDMigration message. Does not implicitly {@link proto.DeviceCapabilities.LIDMigration.verify|verify} messages.
+             * @function encode
+             * @memberof proto.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {proto.DeviceCapabilities.ILIDMigration} message LIDMigration message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            LIDMigration.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.chatDbMigrationTimestamp);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified LIDMigration message, length delimited. Does not implicitly {@link proto.DeviceCapabilities.LIDMigration.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {proto.DeviceCapabilities.ILIDMigration} message LIDMigration message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            LIDMigration.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a LIDMigration message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.DeviceCapabilities.LIDMigration} LIDMigration
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            LIDMigration.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.DeviceCapabilities.LIDMigration();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.chatDbMigrationTimestamp = reader.uint64();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a LIDMigration message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.DeviceCapabilities.LIDMigration} LIDMigration
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            LIDMigration.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a LIDMigration message.
+             * @function verify
+             * @memberof proto.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            LIDMigration.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                var properties = {};
+                if (message.chatDbMigrationTimestamp != null && message.hasOwnProperty("chatDbMigrationTimestamp")) {
+                    properties._chatDbMigrationTimestamp = 1;
+                    if (!$util.isInteger(message.chatDbMigrationTimestamp) && !(message.chatDbMigrationTimestamp && $util.isInteger(message.chatDbMigrationTimestamp.low) && $util.isInteger(message.chatDbMigrationTimestamp.high)))
+                        return "chatDbMigrationTimestamp: integer|Long expected";
+                }
+                return null;
+            };
+
+            /**
+             * Creates a LIDMigration message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.DeviceCapabilities.LIDMigration} LIDMigration
+             */
+            LIDMigration.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.DeviceCapabilities.LIDMigration)
+                    return object;
+                var message = new $root.proto.DeviceCapabilities.LIDMigration();
+                if (object.chatDbMigrationTimestamp != null)
+                    if ($util.Long)
+                        (message.chatDbMigrationTimestamp = $util.Long.fromValue(object.chatDbMigrationTimestamp)).unsigned = true;
+                    else if (typeof object.chatDbMigrationTimestamp === "string")
+                        message.chatDbMigrationTimestamp = parseInt(object.chatDbMigrationTimestamp, 10);
+                    else if (typeof object.chatDbMigrationTimestamp === "number")
+                        message.chatDbMigrationTimestamp = object.chatDbMigrationTimestamp;
+                    else if (typeof object.chatDbMigrationTimestamp === "object")
+                        message.chatDbMigrationTimestamp = new $util.LongBits(object.chatDbMigrationTimestamp.low >>> 0, object.chatDbMigrationTimestamp.high >>> 0).toNumber(true);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a LIDMigration message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {proto.DeviceCapabilities.LIDMigration} message LIDMigration
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            LIDMigration.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (message.chatDbMigrationTimestamp != null && message.hasOwnProperty("chatDbMigrationTimestamp")) {
+                    if (typeof message.chatDbMigrationTimestamp === "number")
+                        object.chatDbMigrationTimestamp = options.longs === String ? String(message.chatDbMigrationTimestamp) : message.chatDbMigrationTimestamp;
+                    else
+                        object.chatDbMigrationTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.chatDbMigrationTimestamp) : options.longs === Number ? new $util.LongBits(message.chatDbMigrationTimestamp.low >>> 0, message.chatDbMigrationTimestamp.high >>> 0).toNumber(true) : message.chatDbMigrationTimestamp;
+                    if (options.oneofs)
+                        object._chatDbMigrationTimestamp = "chatDbMigrationTimestamp";
+                }
+                return object;
+            };
+
+            /**
+             * Converts this LIDMigration to JSON.
+             * @function toJSON
+             * @memberof proto.DeviceCapabilities.LIDMigration
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            LIDMigration.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for LIDMigration
+             * @function getTypeUrl
+             * @memberof proto.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            LIDMigration.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.DeviceCapabilities.LIDMigration";
+            };
+
+            return LIDMigration;
         })();
 
         return DeviceCapabilities;
@@ -45805,6 +49668,288 @@ $root.proto = (function() {
         };
 
         return LegacyMessage;
+    })();
+
+    proto.LimitSharing = (function() {
+
+        /**
+         * Properties of a LimitSharing.
+         * @memberof proto
+         * @interface ILimitSharing
+         * @property {boolean|null} [sharingLimited] LimitSharing sharingLimited
+         * @property {proto.LimitSharing.Trigger|null} [trigger] LimitSharing trigger
+         */
+
+        /**
+         * Constructs a new LimitSharing.
+         * @memberof proto
+         * @classdesc Represents a LimitSharing.
+         * @implements ILimitSharing
+         * @constructor
+         * @param {proto.ILimitSharing=} [properties] Properties to set
+         */
+        function LimitSharing(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LimitSharing sharingLimited.
+         * @member {boolean|null|undefined} sharingLimited
+         * @memberof proto.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.sharingLimited = null;
+
+        /**
+         * LimitSharing trigger.
+         * @member {proto.LimitSharing.Trigger|null|undefined} trigger
+         * @memberof proto.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.trigger = null;
+
+        // OneOf field names bound to virtual getters and setters
+        var $oneOfFields;
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(LimitSharing.prototype, "_sharingLimited", {
+            get: $util.oneOfGetter($oneOfFields = ["sharingLimited"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(LimitSharing.prototype, "_trigger", {
+            get: $util.oneOfGetter($oneOfFields = ["trigger"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * Creates a new LimitSharing instance using the specified properties.
+         * @function create
+         * @memberof proto.LimitSharing
+         * @static
+         * @param {proto.ILimitSharing=} [properties] Properties to set
+         * @returns {proto.LimitSharing} LimitSharing instance
+         */
+        LimitSharing.create = function create(properties) {
+            return new LimitSharing(properties);
+        };
+
+        /**
+         * Encodes the specified LimitSharing message. Does not implicitly {@link proto.LimitSharing.verify|verify} messages.
+         * @function encode
+         * @memberof proto.LimitSharing
+         * @static
+         * @param {proto.ILimitSharing} message LimitSharing message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LimitSharing.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
+                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.sharingLimited);
+            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.trigger);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LimitSharing message, length delimited. Does not implicitly {@link proto.LimitSharing.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof proto.LimitSharing
+         * @static
+         * @param {proto.ILimitSharing} message LimitSharing message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LimitSharing.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LimitSharing message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.LimitSharing
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.LimitSharing} LimitSharing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LimitSharing.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.LimitSharing();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.sharingLimited = reader.bool();
+                        break;
+                    }
+                case 2: {
+                        message.trigger = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LimitSharing message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof proto.LimitSharing
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {proto.LimitSharing} LimitSharing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LimitSharing.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LimitSharing message.
+         * @function verify
+         * @memberof proto.LimitSharing
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LimitSharing.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            var properties = {};
+            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited")) {
+                properties._sharingLimited = 1;
+                if (typeof message.sharingLimited !== "boolean")
+                    return "sharingLimited: boolean expected";
+            }
+            if (message.trigger != null && message.hasOwnProperty("trigger")) {
+                properties._trigger = 1;
+                switch (message.trigger) {
+                default:
+                    return "trigger: enum value expected";
+                case 0:
+                case 1:
+                    break;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a LimitSharing message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof proto.LimitSharing
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {proto.LimitSharing} LimitSharing
+         */
+        LimitSharing.fromObject = function fromObject(object) {
+            if (object instanceof $root.proto.LimitSharing)
+                return object;
+            var message = new $root.proto.LimitSharing();
+            if (object.sharingLimited != null)
+                message.sharingLimited = Boolean(object.sharingLimited);
+            switch (object.trigger) {
+            default:
+                if (typeof object.trigger === "number") {
+                    message.trigger = object.trigger;
+                    break;
+                }
+                break;
+            case "CHAT_SETTING":
+            case 0:
+                message.trigger = 0;
+                break;
+            case "BIZ_SUPPORTS_FB_HOSTING":
+            case 1:
+                message.trigger = 1;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LimitSharing message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof proto.LimitSharing
+         * @static
+         * @param {proto.LimitSharing} message LimitSharing
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LimitSharing.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited")) {
+                object.sharingLimited = message.sharingLimited;
+                if (options.oneofs)
+                    object._sharingLimited = "sharingLimited";
+            }
+            if (message.trigger != null && message.hasOwnProperty("trigger")) {
+                object.trigger = options.enums === String ? $root.proto.LimitSharing.Trigger[message.trigger] === undefined ? message.trigger : $root.proto.LimitSharing.Trigger[message.trigger] : message.trigger;
+                if (options.oneofs)
+                    object._trigger = "trigger";
+            }
+            return object;
+        };
+
+        /**
+         * Converts this LimitSharing to JSON.
+         * @function toJSON
+         * @memberof proto.LimitSharing
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LimitSharing.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LimitSharing
+         * @function getTypeUrl
+         * @memberof proto.LimitSharing
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LimitSharing.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/proto.LimitSharing";
+        };
+
+        /**
+         * Trigger enum.
+         * @name proto.LimitSharing.Trigger
+         * @enum {number}
+         * @property {number} CHAT_SETTING=0 CHAT_SETTING value
+         * @property {number} BIZ_SUPPORTS_FB_HOSTING=1 BIZ_SUPPORTS_FB_HOSTING value
+         */
+        LimitSharing.Trigger = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "CHAT_SETTING"] = 0;
+            values[valuesById[1] = "BIZ_SUPPORTS_FB_HOSTING"] = 1;
+            return values;
+        })();
+
+        return LimitSharing;
     })();
 
     proto.LocalizedName = (function() {
@@ -68166,6 +72311,7 @@ $root.proto = (function() {
                     case 0:
                     case 1:
                     case 2:
+                    case 3:
                         break;
                     }
                 }
@@ -68329,6 +72475,10 @@ $root.proto = (function() {
                 case "AI_MODIFIED":
                 case 2:
                     message.imageSourceType = 2;
+                    break;
+                case "RASTERIZED_TEXT_STATUS":
+                case 3:
+                    message.imageSourceType = 3;
                     break;
                 }
                 if (object.accessibilityLabel != null)
@@ -68541,12 +72691,14 @@ $root.proto = (function() {
              * @property {number} USER_IMAGE=0 USER_IMAGE value
              * @property {number} AI_GENERATED=1 AI_GENERATED value
              * @property {number} AI_MODIFIED=2 AI_MODIFIED value
+             * @property {number} RASTERIZED_TEXT_STATUS=3 RASTERIZED_TEXT_STATUS value
              */
             ImageMessage.ImageSourceType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "USER_IMAGE"] = 0;
                 values[valuesById[1] = "AI_GENERATED"] = 1;
                 values[valuesById[2] = "AI_MODIFIED"] = 2;
+                values[valuesById[3] = "RASTERIZED_TEXT_STATUS"] = 3;
                 return values;
             })();
 
@@ -88335,6 +92487,7 @@ $root.proto = (function() {
              * @property {proto.IMediaNotifyMessage|null} [mediaNotifyMessage] ProtocolMessage mediaNotifyMessage
              * @property {proto.Message.ICloudAPIThreadControlNotification|null} [cloudApiThreadControlNotification] ProtocolMessage cloudApiThreadControlNotification
              * @property {proto.ILIDMigrationMappingSyncMessage|null} [lidMigrationMappingSyncMessage] ProtocolMessage lidMigrationMappingSyncMessage
+             * @property {proto.ILimitSharing|null} [limitSharing] ProtocolMessage limitSharing
              */
 
             /**
@@ -88512,6 +92665,14 @@ $root.proto = (function() {
              */
             ProtocolMessage.prototype.lidMigrationMappingSyncMessage = null;
 
+            /**
+             * ProtocolMessage limitSharing.
+             * @member {proto.ILimitSharing|null|undefined} limitSharing
+             * @memberof proto.Message.ProtocolMessage
+             * @instance
+             */
+            ProtocolMessage.prototype.limitSharing = null;
+
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
@@ -88635,6 +92796,12 @@ $root.proto = (function() {
                 set: $util.oneOfSetter($oneOfFields)
             });
 
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(ProtocolMessage.prototype, "_limitSharing", {
+                get: $util.oneOfGetter($oneOfFields = ["limitSharing"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
             /**
              * Creates a new ProtocolMessage instance using the specified properties.
              * @function create
@@ -88699,6 +92866,8 @@ $root.proto = (function() {
                     $root.proto.Message.CloudAPIThreadControlNotification.encode(message.cloudApiThreadControlNotification, writer.uint32(/* id 22, wireType 2 =*/178).fork()).ldelim();
                 if (message.lidMigrationMappingSyncMessage != null && Object.hasOwnProperty.call(message, "lidMigrationMappingSyncMessage"))
                     $root.proto.LIDMigrationMappingSyncMessage.encode(message.lidMigrationMappingSyncMessage, writer.uint32(/* id 23, wireType 2 =*/186).fork()).ldelim();
+                if (message.limitSharing != null && Object.hasOwnProperty.call(message, "limitSharing"))
+                    $root.proto.LimitSharing.encode(message.limitSharing, writer.uint32(/* id 24, wireType 2 =*/194).fork()).ldelim();
                 return writer;
             };
 
@@ -88813,6 +92982,10 @@ $root.proto = (function() {
                             message.lidMigrationMappingSyncMessage = $root.proto.LIDMigrationMappingSyncMessage.decode(reader, reader.uint32());
                             break;
                         }
+                    case 24: {
+                            message.limitSharing = $root.proto.LimitSharing.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -88883,6 +93056,8 @@ $root.proto = (function() {
                     case 23:
                     case 24:
                     case 25:
+                    case 26:
+                    case 27:
                         break;
                     }
                 }
@@ -89018,6 +93193,14 @@ $root.proto = (function() {
                             return "lidMigrationMappingSyncMessage." + error;
                     }
                 }
+                if (message.limitSharing != null && message.hasOwnProperty("limitSharing")) {
+                    properties._limitSharing = 1;
+                    {
+                        var error = $root.proto.LimitSharing.verify(message.limitSharing);
+                        if (error)
+                            return "limitSharing." + error;
+                    }
+                }
                 return null;
             };
 
@@ -89129,6 +93312,14 @@ $root.proto = (function() {
                 case 25:
                     message.type = 25;
                     break;
+                case "STOP_GENERATION_MESSAGE":
+                case 26:
+                    message.type = 26;
+                    break;
+                case "LIMIT_SHARING":
+                case 27:
+                    message.type = 27;
+                    break;
                 }
                 if (object.ephemeralExpiration != null)
                     message.ephemeralExpiration = object.ephemeralExpiration >>> 0;
@@ -89221,6 +93412,11 @@ $root.proto = (function() {
                     if (typeof object.lidMigrationMappingSyncMessage !== "object")
                         throw TypeError(".proto.Message.ProtocolMessage.lidMigrationMappingSyncMessage: object expected");
                     message.lidMigrationMappingSyncMessage = $root.proto.LIDMigrationMappingSyncMessage.fromObject(object.lidMigrationMappingSyncMessage);
+                }
+                if (object.limitSharing != null) {
+                    if (typeof object.limitSharing !== "object")
+                        throw TypeError(".proto.Message.ProtocolMessage.limitSharing: object expected");
+                    message.limitSharing = $root.proto.LimitSharing.fromObject(object.limitSharing);
                 }
                 return message;
             };
@@ -89344,6 +93540,11 @@ $root.proto = (function() {
                     if (options.oneofs)
                         object._lidMigrationMappingSyncMessage = "lidMigrationMappingSyncMessage";
                 }
+                if (message.limitSharing != null && message.hasOwnProperty("limitSharing")) {
+                    object.limitSharing = $root.proto.LimitSharing.toObject(message.limitSharing, options);
+                    if (options.oneofs)
+                        object._limitSharing = "limitSharing";
+                }
                 return object;
             };
 
@@ -89398,6 +93599,8 @@ $root.proto = (function() {
              * @property {number} REMINDER_MESSAGE=23 REMINDER_MESSAGE value
              * @property {number} BOT_MEMU_ONBOARDING_MESSAGE=24 BOT_MEMU_ONBOARDING_MESSAGE value
              * @property {number} STATUS_MENTION_MESSAGE=25 STATUS_MENTION_MESSAGE value
+             * @property {number} STOP_GENERATION_MESSAGE=26 STOP_GENERATION_MESSAGE value
+             * @property {number} LIMIT_SHARING=27 LIMIT_SHARING value
              */
             ProtocolMessage.Type = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -89422,6 +93625,8 @@ $root.proto = (function() {
                 values[valuesById[23] = "REMINDER_MESSAGE"] = 23;
                 values[valuesById[24] = "BOT_MEMU_ONBOARDING_MESSAGE"] = 24;
                 values[valuesById[25] = "STATUS_MENTION_MESSAGE"] = 25;
+                values[valuesById[26] = "STOP_GENERATION_MESSAGE"] = 26;
+                values[valuesById[27] = "LIMIT_SHARING"] = 27;
                 return values;
             })();
 
@@ -96963,6 +101168,7 @@ $root.proto = (function() {
              * @property {Array.<proto.IInteractiveAnnotation>|null} [annotations] VideoMessage annotations
              * @property {string|null} [accessibilityLabel] VideoMessage accessibilityLabel
              * @property {Array.<proto.IProcessedVideo>|null} [processedVideos] VideoMessage processedVideos
+             * @property {number|null} [externalShareFullVideoDurationInSeconds] VideoMessage externalShareFullVideoDurationInSeconds
              */
 
             /**
@@ -97191,6 +101397,14 @@ $root.proto = (function() {
              */
             VideoMessage.prototype.processedVideos = $util.emptyArray;
 
+            /**
+             * VideoMessage externalShareFullVideoDurationInSeconds.
+             * @member {number|null|undefined} externalShareFullVideoDurationInSeconds
+             * @memberof proto.Message.VideoMessage
+             * @instance
+             */
+            VideoMessage.prototype.externalShareFullVideoDurationInSeconds = null;
+
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
@@ -97332,6 +101546,12 @@ $root.proto = (function() {
                 set: $util.oneOfSetter($oneOfFields)
             });
 
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(VideoMessage.prototype, "_externalShareFullVideoDurationInSeconds", {
+                get: $util.oneOfGetter($oneOfFields = ["externalShareFullVideoDurationInSeconds"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
             /**
              * Creates a new VideoMessage instance using the specified properties.
              * @function create
@@ -97411,6 +101631,8 @@ $root.proto = (function() {
                 if (message.processedVideos != null && message.processedVideos.length)
                     for (var i = 0; i < message.processedVideos.length; ++i)
                         $root.proto.ProcessedVideo.encode(message.processedVideos[i], writer.uint32(/* id 27, wireType 2 =*/218).fork()).ldelim();
+                if (message.externalShareFullVideoDurationInSeconds != null && Object.hasOwnProperty.call(message, "externalShareFullVideoDurationInSeconds"))
+                    writer.uint32(/* id 28, wireType 0 =*/224).uint32(message.externalShareFullVideoDurationInSeconds);
                 return writer;
             };
 
@@ -97553,6 +101775,10 @@ $root.proto = (function() {
                             if (!(message.processedVideos && message.processedVideos.length))
                                 message.processedVideos = [];
                             message.processedVideos.push($root.proto.ProcessedVideo.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 28: {
+                            message.externalShareFullVideoDurationInSeconds = reader.uint32();
                             break;
                         }
                     default:
@@ -97742,6 +101968,11 @@ $root.proto = (function() {
                             return "processedVideos." + error;
                     }
                 }
+                if (message.externalShareFullVideoDurationInSeconds != null && message.hasOwnProperty("externalShareFullVideoDurationInSeconds")) {
+                    properties._externalShareFullVideoDurationInSeconds = 1;
+                    if (!$util.isInteger(message.externalShareFullVideoDurationInSeconds))
+                        return "externalShareFullVideoDurationInSeconds: integer expected";
+                }
                 return null;
             };
 
@@ -97889,6 +102120,8 @@ $root.proto = (function() {
                         message.processedVideos[i] = $root.proto.ProcessedVideo.fromObject(object.processedVideos[i]);
                     }
                 }
+                if (object.externalShareFullVideoDurationInSeconds != null)
+                    message.externalShareFullVideoDurationInSeconds = object.externalShareFullVideoDurationInSeconds >>> 0;
                 return message;
             };
 
@@ -98045,6 +102278,11 @@ $root.proto = (function() {
                     object.processedVideos = [];
                     for (var j = 0; j < message.processedVideos.length; ++j)
                         object.processedVideos[j] = $root.proto.ProcessedVideo.toObject(message.processedVideos[j], options);
+                }
+                if (message.externalShareFullVideoDurationInSeconds != null && message.hasOwnProperty("externalShareFullVideoDurationInSeconds")) {
+                    object.externalShareFullVideoDurationInSeconds = message.externalShareFullVideoDurationInSeconds;
+                    if (options.oneofs)
+                        object._externalShareFullVideoDurationInSeconds = "externalShareFullVideoDurationInSeconds";
                 }
                 return object;
             };
@@ -99147,6 +103385,8 @@ $root.proto = (function() {
                 case 7:
                 case 8:
                 case 9:
+                case 10:
+                case 11:
                     break;
                 }
             }
@@ -99224,6 +103464,14 @@ $root.proto = (function() {
             case "STATUS_NOTIFICATION":
             case 9:
                 message.associationType = 9;
+                break;
+            case "HD_IMAGE_DUAL_UPLOAD":
+            case 10:
+                message.associationType = 10;
+                break;
+            case "STICKER_ANNOTATION":
+            case 11:
+                message.associationType = 11;
                 break;
             }
             if (object.parentMessageKey != null) {
@@ -99307,6 +103555,8 @@ $root.proto = (function() {
          * @property {number} MEDIA_POLL=7 MEDIA_POLL value
          * @property {number} STATUS_ADD_YOURS=8 STATUS_ADD_YOURS value
          * @property {number} STATUS_NOTIFICATION=9 STATUS_NOTIFICATION value
+         * @property {number} HD_IMAGE_DUAL_UPLOAD=10 HD_IMAGE_DUAL_UPLOAD value
+         * @property {number} STICKER_ANNOTATION=11 STICKER_ANNOTATION value
          */
         MessageAssociation.AssociationType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -99320,6 +103570,8 @@ $root.proto = (function() {
             values[valuesById[7] = "MEDIA_POLL"] = 7;
             values[valuesById[8] = "STATUS_ADD_YOURS"] = 8;
             values[valuesById[9] = "STATUS_NOTIFICATION"] = 9;
+            values[valuesById[10] = "HD_IMAGE_DUAL_UPLOAD"] = 10;
+            values[valuesById[11] = "STICKER_ANNOTATION"] = 11;
             return values;
         })();
 
@@ -148677,6 +152929,9 @@ $root.proto = (function() {
                 case 210:
                 case 211:
                 case 212:
+                case 213:
+                case 214:
+                case 215:
                     break;
                 }
             }
@@ -149957,6 +154212,18 @@ $root.proto = (function() {
             case 212:
                 message.messageStubType = 212;
                 break;
+            case "CHANGE_LID":
+            case 213:
+                message.messageStubType = 213;
+                break;
+            case "BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE":
+            case 214:
+                message.messageStubType = 214;
+                break;
+            case "BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE":
+            case 215:
+                message.messageStubType = 215;
+                break;
             }
             if (object.clearMedia != null)
                 message.clearMedia = Boolean(object.clearMedia);
@@ -150855,6 +155122,9 @@ $root.proto = (function() {
          * @property {number} STATUS_MENTION=210 STATUS_MENTION value
          * @property {number} USER_CONTROLS_SYSTEM_MESSAGE=211 USER_CONTROLS_SYSTEM_MESSAGE value
          * @property {number} SUPPORT_SYSTEM_MESSAGE=212 SUPPORT_SYSTEM_MESSAGE value
+         * @property {number} CHANGE_LID=213 CHANGE_LID value
+         * @property {number} BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE=214 BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE value
+         * @property {number} BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE=215 BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE value
          */
         WebMessageInfo.StubType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -151071,6 +155341,9 @@ $root.proto = (function() {
             values[valuesById[210] = "STATUS_MENTION"] = 210;
             values[valuesById[211] = "USER_CONTROLS_SYSTEM_MESSAGE"] = 211;
             values[valuesById[212] = "SUPPORT_SYSTEM_MESSAGE"] = 212;
+            values[valuesById[213] = "CHANGE_LID"] = 213;
+            values[valuesById[214] = "BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE"] = 214;
+            values[valuesById[215] = "BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE"] = 215;
             return values;
         })();
 

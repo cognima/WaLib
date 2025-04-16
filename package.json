@@ -1,6 +1,6 @@
 {
   "name": "@cognima/walib",
-  "version": "0.0.1",
+  "version": "0.0.3-beta2",
   "description": "whatsapp api based on baileys",
   "homepage": "https://cognima.com.br",
   "repository": {
